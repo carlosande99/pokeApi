@@ -1,38 +1,159 @@
-.App {
-  text-align: center;
+:root {
+    --fondo-url: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+	font-family: "Arial";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    background-image: var(--fondo-url);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.region, .imagen-contenedor, .iniciales {
+    background-color: transparent;
+}
+.header {
+	font-weight: bold;
+	text-align: center;
+	height: 8vh;
+	border: solid 1px;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	background-color: rgba(255, 128, 0, 0.75);
+	color: blue;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
+	
+}
+.header img {
+	width: 160px;
+	height: 60px;
+}
+nav {
+	height: 4vh;
+	background-color: rgba(245, 222, 179, 0.8);
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+}
+
+nav>a{
+	margin-left: 2%;
+}
+
+.regiones {
+    height: 19vh;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imagen-contenedor img{
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 1);
+    transition: transform 0.3s ease-in-out
+}
+
+.imagen-contenedor img:hover {
+    transform: translateY(-7px); /* Levanta la imagen al pasar el ratón sobre ella */
+}
+
+.imagen-contenedor {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 70%;
+  width: 20%;
+  margin-left: 1vh;
+  margin-right: 2vh;
+}
+
+.imagen-contenedor2{
+  height: 100%;
+  width: 90%;
+}
+
+.iniciales {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+a, p, h3{
+    text-decoration: none;
+	color: orange;
+	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
+	text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer {
+	clear: both;
+	text-align: center;
+	height: 8vh;
+	border: solid 1px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: rgba(255, 128, 0, 0.75);
+	color: blue;
+	display:flex;
+	justify-content: center;
+	align-items: center; 
+	font-style: italic;
+	margin-top: 20px;
+	width: 100%;
+}
+
+
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.pokemon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.05);
+}
+
+.pokemon-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* para la lista de pokemons */
+@media (max-width: 1200px) {
+    .pokemon-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .pokemon-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .pokemon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
