@@ -87,7 +87,7 @@ nav>a{
   align-items: center;
 }
 
-a, p, h3{
+a, p, h3, h2{
     text-decoration: none;
 	color: orange;
 	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;

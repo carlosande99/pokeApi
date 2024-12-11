@@ -26,6 +26,8 @@ const Layout = () => {
                 <Link to="/">G8 Galar/Hisui</Link>
 
                 <Link to="/">G9 Paldea</Link>
+
+                <Link to="/">Pokedéx Nacional</Link>
             </nav>
             <Outlet/>
         </>
