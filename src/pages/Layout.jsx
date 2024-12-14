@@ -27,7 +27,7 @@ const Layout = () => {
 
                 <Link to="/">G9 Paldea</Link>
 
-                <Link to="/">Pokedéx Nacional</Link>
+                <Link to="/">Pokédex Nacional</Link>
             </nav>
             <Outlet/>
         </>

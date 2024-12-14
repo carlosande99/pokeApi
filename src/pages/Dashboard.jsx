@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import '../App.css';
 import { Pie } from './Pie';
-import { Link } from "react-router-dom";
 function Dashboard() {
     const location = useLocation();
     const [data, setData] = useState(null);
@@ -11,9 +10,11 @@ function Dashboard() {
     const [error, setError] = useState(null);
     const [descripcion, setDescripcion] = useState([]);
     const [version, setVersion] = useState([]);
-    const [activeDescription, setActiveDescription] = useState(null);
+    const [activeDescription, setActiveDescription] = useState(0);
     const [datosVersion, setDatosVersion] = useState(null);
-    
+    const [habilidades, setAbilidades] = useState([]);
+    const [tipos, setTipos] = useState([]);
+    //datos principales /pokemon-species
     useEffect(() => {
         fetch("https://pokeapi.co/api/v2/pokemon-species/"+location.state)
         .then((response) => {
@@ -31,7 +32,7 @@ function Dashboard() {
             setLoading(false);
         });
     }, [location.state]);
-
+    //datos principales /pokemon 
     useEffect(() => {
         if (!data || !data.varieties) return;
         fetch(data.varieties[0].pokemon.url)
@@ -50,7 +51,7 @@ function Dashboard() {
                 setLoading(false);
             });
     }, [data]);
-
+    // descipciones
     useEffect(() => {
         if (!data || !data.flavor_text_entries) return;
         for(let i=0;i<data.flavor_text_entries.length;i++){
@@ -60,7 +61,7 @@ function Dashboard() {
             }
         }
     },[data]);
-
+    // botones de la descripcion
     useEffect(() => {
         if(!version[0] ) return;
         const promises = version.map(entry => {
@@ -87,12 +88,70 @@ function Dashboard() {
                 setError(error.message);
             });
     }, [version]);
+    // habilidades que tiene de manera pasiva
+    useEffect(() => {
+        if(!dataPoke) return;
+        const promises = dataPoke.abilities.map(entry => {
+            const ability = entry.ability.url;
+            return fetch(ability)
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`Error en la solicitud para obtener la nombres`);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error(`Error fetching para los nombres: `, error);
+                    return null;
+                });
+        });
+        Promise.all(promises)
+        .then(results => {
+            const validResults = results.filter(result => result !== null);
+            setAbilidades(validResults);
+        })
+        .catch(error => {
+            console.error("Error en las promesas:", error);
+            setError(error.message);
+        });
+    }, [dataPoke])
+    // tipos, ventajas y desventajas
+    useEffect(() => {
+        if(!dataPoke) return;
+        const promises = dataPoke.types.map(entry => {
+            const ability = entry.type.url;
+            return fetch(ability)
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`Error en la solicitud para obtener la nombres`);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error(`Error fetching para los nombres: `, error);
+                    return null;
+                });
+        });
+        Promise.all(promises)
+        .then(results => {
+            const validResults = results.filter(result => result !== null);
+            setTipos(validResults);
+        })
+        .catch(error => {
+            console.error("Error en las promesas:", error);
+            setError(error.message);
+        });
+    }, [dataPoke])
 
+
+    // if necesarios para los useEffect
     if (loading) return <p>Cargando...</p>;
     if (error) return <p>Error: {error}</p>;
     if(!data) return <p>Cargando datos...</p>
     if (!dataPoke) return <p>Cargando datos...</p>;
     if (!version) return <p>Cargando datos...</p>;
+    if (!habilidades) return <p>Cargando datos...</p>;
+    if(!datosVersion) return <p>Cargando datos...</p>
 
     const formattedId = String(data.id).padStart(4, '0');
     function formatearAltura(altura) {
@@ -157,8 +216,88 @@ function Dashboard() {
                             </div>
                             <p><strong>Altura:</strong> {altura}</p>
                             <p><strong>Peso:</strong> {peso}</p>
-                            <p><strong>Tipos:</strong> {dataPoke.types.map(type => type.type.name).join(', ')}</p>
-                            <p><strong>Debilidades:</strong></p>
+                            <p>
+                                Puntos Base: 
+                                <span> Ps: 
+                                    {
+                                        dataPoke.stats[0].base_stat
+                                    }
+                                </span>
+                                <span> Ataque: 
+                                    {
+                                        dataPoke.stats[1].base_stat
+                                    }
+                                </span>
+                                <span> Defensa: 
+                                    {
+                                        dataPoke.stats[2].base_stat
+                                    }
+                                </span>
+                                <span> Ataque Especial: 
+                                    {
+                                        dataPoke.stats[3].base_stat
+                                    }
+                                </span>
+                                <span> Defensa Especial: 
+                                    {
+                                        dataPoke.stats[4].base_stat
+                                    }
+                                </span>
+                                <span> Velocidad: 
+                                    {
+                                        dataPoke.stats[5].base_stat
+                                    }
+                                </span>
+                            </p>
+                            <p>
+                                <strong>Tipos: </strong> 
+                                {
+                                    tipos.map((type2, index2) => (
+                                        type2.names && type2.names.length > 0 ? (
+                                            type2.names.map((type, index) => (
+                                                type.language && type.language.name === 'es' ? (
+                                                    <span key={index}>{type.name} </span>
+                                                ): null
+                                            ))
+                                        ): null
+                                    ))
+   
+                                }
+                            </p>
+                            <p>
+                                <strong>Habilidades: </strong>
+                                {
+                                    habilidades && habilidades.length > 0 ? (
+                                        habilidades.map((type, index) => (
+                                            type.names.map((type2, index2) => (
+                                                type2.language && type2.language.name === 'es' ? (
+                                                    <button key={index2}>{type2.name} </button>
+                                                ) : null
+                                            ))
+                                        ))
+                                    ): null
+                                }
+                            </p>
+                            
+                            <p>
+                                <strong>Ventaja:</strong>
+                                {
+                                    tipos.map((type, index) => (
+                                        type.damage_relations.double_damage_to.map((type2, index2) => (
+                                            <span>{type2.name} </span>
+                                        ))
+                                    ))
+                                }
+                            </p>
+                            <p><strong>Desventaja:</strong>
+                                {
+                                    tipos.map((type, index) => (
+                                        type.damage_relations.double_damage_from.map((type2, index2) => (
+                                            <span>{type2.name} </span>
+                                        ))
+                                    ))
+                                }
+                            </p>
                         </div>
                     </div>
 
