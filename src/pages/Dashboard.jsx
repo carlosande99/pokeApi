@@ -54,16 +54,30 @@ function Dashboard() {
     // descipciones
     useEffect(() => {
         if (!data || !data.flavor_text_entries) return;
+        let foundSpanish = false;
         for(let i=0;i<data.flavor_text_entries.length;i++){
             if(data.flavor_text_entries[i].language.name === "es"){
                 setDescripcion(nuevoDatos => [...nuevoDatos, data.flavor_text_entries[i].flavor_text])
                 setVersion(versiones => [...versiones, data.flavor_text_entries[i].version.url])
+                foundSpanish = true;
+            }
+        }
+        // Si no se encontró español, buscamos inglés
+        if (!foundSpanish) {
+            for (let i = 0; i < data.flavor_text_entries.length; i++) {
+                const entry = data.flavor_text_entries[i];
+
+                if (entry.language.name === "en") {
+                    setDescripcion(nuevoDatos => [...nuevoDatos, entry.flavor_text]);
+                    setVersion(versiones => [...versiones, entry.version.url]);
+                    break;
+                }
             }
         }
     },[data]);
     // botones de la descripcion
     useEffect(() => {
-        if(!version[0] ) return;
+        if(!version && !version[0]) return;
         const promises = version.map(entry => {
             const nombres = entry;
             return fetch(nombres)
@@ -175,12 +189,12 @@ function Dashboard() {
     };
     return (
         <>
-            <div className="">
-                <div className="">
-                    <h2>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formattedId}</h2>
-                    <div>
+            <div className="" key={'1'}>
+                <div className="" key={'2'}>
+                    <h2 key={'h2'}>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formattedId}</h2>
+                    <div key={'3'}>
                         {/* la imagen */}
-                        <div>
+                        <div key={'4'}>
                             <img 
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
                             alt={data.name}
@@ -189,21 +203,22 @@ function Dashboard() {
                                 e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`
                             }}
                             className="pokemon-image"
+                            key={'img'}
                             />
                         </div>
-                        <div>
-                            {/* los botones de las versiones */}
-                            <div>
-                                <div style={{display: 'flex', justifyContent: 'center', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))'}}>
+                        <div key={'5'}>
+                            <h4 key={'h4'}>Los botones de las versiones</h4>
+                            <div key={'6'}>
+                                <div style={{display: 'flex', justifyContent: 'center', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))'}} key={'7'}>
                                     {
                                         datosVersion && // Asegúrate de que datosVersion no sea null o undefined
                                         datosVersion.map((item, index) => (
                                             item.names.map((item2, index2) => (
                                                 item2.language && item2.language.name === 'es' ? ( // Filtra dentro del segundo map
-                                                    <button key={index2} onClick={() => handleButtonClick(index)}>
-                                                        <img src="" alt="" />
-                                                        {item2.name}
-                                                    </button>
+                                                    <button key={`button-${index}-${index2}`} onClick={() => handleButtonClick(index)}>
+                                                        <img src={`aplicacion_web/public/pokeball-pokemon-svgrepo-com.png`} alt="" key={`img-${index}-${index2}`}/>
+                                                        {item2.name} 
+                                                    </button> 
                                                 ) : null
                                             ))
                                         ))
@@ -211,99 +226,96 @@ function Dashboard() {
                                 </div>
                                 {descripcion.map((item, index) => (
                                     // Solo muestra la descripción si el índice coincide con el índice activo
-                                    activeDescription === index && <p key={index}>{item}</p>
+                                    activeDescription === index && <p key={`desc-${index}`}>{item}</p>
                                 ))}
                             </div>
-                            <p><strong>Altura:</strong> {altura}</p>
-                            <p><strong>Peso:</strong> {peso}</p>
-                            <p>
+                            <p key={'p1'}><strong key={'strong1'}>Altura:</strong> {altura}</p>
+                            <p key={'p2'}><strong key={'strong2'}>Peso:</strong> {peso}</p>
+                            <p key={'p3'}>
                                 Puntos Base: 
-                                <span> Ps: 
+                                <span key={'span1'}> Ps: 
                                     {
                                         dataPoke.stats[0].base_stat
                                     }
                                 </span>
-                                <span> Ataque: 
+                                <span key={'span2'}> Ataque: 
                                     {
                                         dataPoke.stats[1].base_stat
                                     }
                                 </span>
-                                <span> Defensa: 
+                                <span key={'span3'}> Defensa: 
                                     {
                                         dataPoke.stats[2].base_stat
                                     }
                                 </span>
-                                <span> Ataque Especial: 
+                                <span key={'span4'}> Ataque Especial: 
                                     {
                                         dataPoke.stats[3].base_stat
                                     }
                                 </span>
-                                <span> Defensa Especial: 
+                                <span key={'span5'}> Defensa Especial: 
                                     {
                                         dataPoke.stats[4].base_stat
                                     }
                                 </span>
-                                <span> Velocidad: 
+                                <span key={'span6'}> Velocidad: 
                                     {
                                         dataPoke.stats[5].base_stat
                                     }
                                 </span>
                             </p>
-                            <p>
-                                <strong>Tipos: </strong> 
+                            <p key={'p4'}>
+                                <strong key={'strong3'}>Tipos: </strong> 
                                 {
                                     tipos.map((type2, index2) => (
                                         type2.names && type2.names.length > 0 ? (
                                             type2.names.map((type, index) => (
                                                 type.language && type.language.name === 'es' ? (
-                                                    <span key={index}>{type.name} </span>
+                                                    <span key={`type-${index2}-${index}`}>{type.name} </span>
                                                 ): null
                                             ))
                                         ): null
                                     ))
-   
                                 }
                             </p>
-                            <p>
-                                <strong>Habilidades: </strong>
+                            <p key={'p5'}>
+                                <strong key={'strong4'}>Habilidades: </strong>
                                 {
                                     habilidades && habilidades.length > 0 ? (
                                         habilidades.map((type, index) => (
                                             type.names.map((type2, index2) => (
                                                 type2.language && type2.language.name === 'es' ? (
-                                                    <button key={index2}>{type2.name} </button>
+                                                    <button key={`ability-${index}-${index2}`}>{type2.name} </button>
                                                 ) : null
                                             ))
                                         ))
                                     ): null
                                 }
                             </p>
-                            
-                            <p>
-                                <strong>Ventaja:</strong>
+                            <p key={'p6'}>
+                                <strong key={'strong5'}>Ventaja:</strong>
                                 {
                                     tipos.map((type, index) => (
                                         type.damage_relations.double_damage_to.map((type2, index2) => (
-                                            <span>{type2.name} </span>
+                                            <span key={`advantage-${index}-${index2}`}>{type2.name} </span>
                                         ))
                                     ))
                                 }
                             </p>
-                            <p><strong>Desventaja:</strong>
+                            <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong>
                                 {
                                     tipos.map((type, index) => (
                                         type.damage_relations.double_damage_from.map((type2, index2) => (
-                                            <span>{type2.name} </span>
+                                            <span key={`disadvantage-${index}-${index2}`}>{type2.name} </span>
                                         ))
                                     ))
                                 }
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
-            <Pie />
+            <Pie key={'pie'} />
         </>
         
 
