@@ -127,6 +127,7 @@ footer {
     border: 1px solid #ccc;
     border-radius: 8px;
     transition: transform 0.2s;
+    background-color: #d4d4d4;
 }
 
 .pokemon-card:hover {
@@ -139,6 +140,37 @@ footer {
     object-fit: contain;
 }
 
+#divCargarMas{
+    display: flex;
+    justify-content: center;
+}
+
+#cargarMas{
+    padding: 10px 20px;
+    background-color: #e7ad42;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cargarMas:hover{
+    background-color: #a07c18;
+}
+
+#cargarMas:active{
+    background-color: #a88a03;
+}
+
+#divPrin{
+    display: flex;
+}
+#divImage{
+    width: 50%;
+}
+#divDatos{
+    width: 50%;
+}
 /* para la lista de pokemons */
 @media (max-width: 1200px) {
     .pokemon-grid {

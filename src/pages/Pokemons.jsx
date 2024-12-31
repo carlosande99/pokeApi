@@ -3,42 +3,44 @@ import React, { useState, useEffect } from "react";
 import '../App.css';
 import { Pie } from './Pie';
 import { Link } from "react-router-dom";
+
 function Pokemons() {
     const location = useLocation();
     const [data, setData] = useState(null);
     const [pokedexData, setPokedexData] = useState(null);
-    const [nameData, setNameData] = useState({});
+    const [nameData, setNameData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const [visibleCount] = useState(18);
+    const [offset, setOffset] = useState(0);
+    const [cantidadPoke, setCantidadPoke] = useState(0);
     useEffect(() => {
-        // Llamada a la API
-        fetch("https://pokeapi.co/api/v2/region/"+location.state)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Error en la solicitud");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            setData(data);
-            setLoading(false);
-          })
-          .catch((err) => {
-            setError(err.message);
-            setLoading(false);
-        });
+        // Llamada a la API para obtener la región
+        fetch("https://pokeapi.co/api/v2/region/" + location.state)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error en la solicitud");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setData(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false);
+            });
     }, [location.state]);
 
     useEffect(() => {
-        if(!data || !data.pokedexes) return;
+        if (!data || !data.pokedexes) return;
 
         const promises = data.pokedexes.map(entry => {
             const pokedex = entry.url;
-            
             return fetch(pokedex)
                 .then(response => {
-                    if(!response.ok) {
+                    if (!response.ok) {
                         throw new Error(`Error en la solicitud para obtener la pokédex`);
                     }
                     return response.json();
@@ -63,22 +65,22 @@ function Pokemons() {
     useEffect(() => {
         if (!pokedexData) return;
 
-        // Obtenemos todos los pokemon_entries de todas las pokedex
         const allPokemonEntries = pokedexData.flatMap(pokedex => 
             pokedex.pokemon_entries || []
         );
-    
+
         // Filtrar entradas duplicadas por nombre de pokemon
         const uniqueEntries = Array.from(new Set(
             allPokemonEntries.map(entry => entry.pokemon_species.name)
         )).map(name => 
             allPokemonEntries.find(entry => entry.pokemon_species.name === name)
         );
-    
-        const promises = uniqueEntries.map(entry => {
+        setCantidadPoke(uniqueEntries.length)
+        // Cargar solo los Pokémon visibles
+        const promises = uniqueEntries.slice(offset, offset + visibleCount).map(entry => {
             const pokemonName = entry.pokemon_species.name;
             const pokemonEspecie = entry.pokemon_species.url;
-            
+
             return fetch(pokemonEspecie)
                 .then(response => {
                     if (!response.ok) {
@@ -91,24 +93,28 @@ function Pokemons() {
                     return null;
                 });
         });
-    
+
         Promise.all(promises)
             .then(results => {
                 const validResults = results.filter(result => result !== null);
-                // Ordenar por ID para mantener el orden correcto
                 const sortedResults = validResults.sort((a, b) => a.id - b.id);
-                setNameData(sortedResults);
+                setNameData(prevNameData => [...prevNameData, ...sortedResults]);
             })
             .catch(error => {
                 console.error("Error en las promesas:", error);
                 setError(error.message);
             });
-    }, [pokedexData]);
-    
+    }, [pokedexData, offset]);
+
+    const loadMore = () => {
+        setOffset(prevOffset => prevOffset + visibleCount);
+    };
+
     if (loading) return <p>Cargando...</p>;
     if (error) return <p>Error: {error}</p>;
     if (!data || !pokedexData) return <p>Cargando datos de la Pokédex...</p>;
-    if(!nameData) return <p>Cargando Datos...</p>
+    if (!nameData) return <p>Cargando Datos...</p>;
+
     return (
         <>
             {
@@ -133,19 +139,22 @@ function Pokemons() {
                                                 <p>{index + 1}. {pokemon.name}</p>
                                             </div>
                                         </Link>
-
                                     ))
                                 ) : (
                                     <p>Cargando los Pokémon...</p>
                                 )
                             }
                         </div>
+                        {offset + visibleCount < cantidadPoke && (
+                            <div id='divCargarMas'>
+                                <button onClick={loadMore} id='cargarMas'>Cargar más</button>
+                            </div>
+                        )}
                     </div>
-                ): null
+                ) : null
             }
             <Pie />
         </>
-        
     );
 }
 

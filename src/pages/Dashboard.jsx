@@ -192,9 +192,9 @@ function Dashboard() {
             <div className="" key={'1'}>
                 <div className="" key={'2'}>
                     <h2 key={'h2'}>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formattedId}</h2>
-                    <div key={'3'}>
+                    <div key={'3'} id='divPrin'>
                         {/* la imagen */}
-                        <div key={'4'}>
+                        <div key={'4'} id='divImage' >
                             <img 
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
                             alt={data.name}
@@ -206,15 +206,15 @@ function Dashboard() {
                             key={'img'}
                             />
                         </div>
-                        <div key={'5'}>
+                        <div key={'5'} id='divDatos'>
                             <h4 key={'h4'}>Los botones de las versiones</h4>
                             <div key={'6'}>
                                 <div style={{display: 'flex', justifyContent: 'center', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))'}} key={'7'}>
                                     {
-                                        datosVersion && // Asegúrate de que datosVersion no sea null o undefined
+                                        datosVersion &&
                                         datosVersion.map((item, index) => (
                                             item.names.map((item2, index2) => (
-                                                item2.language && item2.language.name === 'es' ? ( // Filtra dentro del segundo map
+                                                item2.language && item2.language.name === 'es' ? (
                                                     <button key={`button-${index}-${index2}`} onClick={() => handleButtonClick(index)}>
                                                         <img src={`aplicacion_web/public/pokeball-pokemon-svgrepo-com.png`} alt="" key={`img-${index}-${index2}`}/>
                                                         {item2.name} 
@@ -229,88 +229,99 @@ function Dashboard() {
                                     activeDescription === index && <p key={`desc-${index}`}>{item}</p>
                                 ))}
                             </div>
-                            <p key={'p1'}><strong key={'strong1'}>Altura:</strong> {altura}</p>
-                            <p key={'p2'}><strong key={'strong2'}>Peso:</strong> {peso}</p>
-                            <p key={'p3'}>
-                                Puntos Base: 
-                                <span key={'span1'}> Ps: 
+                            <div id='datosPoke' style={{backgroundColor: 'blue'}}>
+                                <p key={'p1'}><strong key={'strong1'}>Altura:</strong> {altura}</p>
+                                <p key={'p2'}><strong key={'strong2'}>Peso:</strong> {peso}</p>
+                                <p key={'p4'}>
+                                    <strong key={'strong3'}>Tipos: </strong> 
                                     {
-                                        dataPoke.stats[0].base_stat
+                                        tipos.map((type2, index2) => (
+                                            type2.names && type2.names.length > 0 ? (
+                                                type2.names.map((type, index) => (
+                                                    type.language && type.language.name === 'es' ? (
+                                                        <span key={`type-${index2}-${index}`}>{type.name} </span>
+                                                    ): null
+                                                ))
+                                            ): null
+                                        ))
                                     }
-                                </span>
-                                <span key={'span2'}> Ataque: 
+                                </p>
+                                <p key={'p5'}>
+                                    <strong key={'strong4'}>Habilidades: </strong>
                                     {
-                                        dataPoke.stats[1].base_stat
-                                    }
-                                </span>
-                                <span key={'span3'}> Defensa: 
-                                    {
-                                        dataPoke.stats[2].base_stat
-                                    }
-                                </span>
-                                <span key={'span4'}> Ataque Especial: 
-                                    {
-                                        dataPoke.stats[3].base_stat
-                                    }
-                                </span>
-                                <span key={'span5'}> Defensa Especial: 
-                                    {
-                                        dataPoke.stats[4].base_stat
-                                    }
-                                </span>
-                                <span key={'span6'}> Velocidad: 
-                                    {
-                                        dataPoke.stats[5].base_stat
-                                    }
-                                </span>
-                            </p>
-                            <p key={'p4'}>
-                                <strong key={'strong3'}>Tipos: </strong> 
-                                {
-                                    tipos.map((type2, index2) => (
-                                        type2.names && type2.names.length > 0 ? (
-                                            type2.names.map((type, index) => (
-                                                type.language && type.language.name === 'es' ? (
-                                                    <span key={`type-${index2}-${index}`}>{type.name} </span>
-                                                ): null
+                                        habilidades && habilidades.length > 0 ? (
+                                            habilidades.map((type, index) => (
+                                                type.names.map((type2, index2) => (
+                                                    type2.language && type2.language.name === 'es' ? (
+                                                        <button key={`ability-${index}-${index2}`}>{type2.name} </button>
+                                                    ) : null
+                                                ))
                                             ))
                                         ): null
-                                    ))
-                                }
-                            </p>
-                            <p key={'p5'}>
-                                <strong key={'strong4'}>Habilidades: </strong>
-                                {
-                                    habilidades && habilidades.length > 0 ? (
-                                        habilidades.map((type, index) => (
-                                            type.names.map((type2, index2) => (
-                                                type2.language && type2.language.name === 'es' ? (
-                                                    <button key={`ability-${index}-${index2}`}>{type2.name} </button>
-                                                ) : null
+                                    }
+                                </p>
+                            </div>
+                            <div id='puntosBase' style={{backgroundColor: 'red'}}>
+                                <p key={'p3'}>
+                                    Puntos Base: 
+                                    <span key={'span1'}> Ps: 
+                                        {
+                                            dataPoke.stats[0].base_stat
+                                        }
+                                    </span>
+                                    <span key={'span2'}> Ataque: 
+                                        {
+                                            dataPoke.stats[1].base_stat
+                                        }
+                                    </span>
+                                    <span key={'span3'}> Defensa: 
+                                        {
+                                            dataPoke.stats[2].base_stat
+                                        }
+                                    </span>
+                                    <span key={'span4'}> Ataque Especial: 
+                                        {
+                                            dataPoke.stats[3].base_stat
+                                        }
+                                    </span>
+                                    <span key={'span5'}> Defensa Especial: 
+                                        {
+                                            dataPoke.stats[4].base_stat
+                                        }
+                                    </span>
+                                    <span key={'span6'}> Velocidad: 
+                                        {
+                                            dataPoke.stats[5].base_stat
+                                        }
+                                    </span>
+                                </p>
+                            </div>
+                            <div id='venDesv' style={{backgroundColor: 'black'}}>
+                                <div id='ventaja' style={{backgroundColor: 'red'}}>
+                                    <p key={'p6'}>
+                                        <strong key={'strong5'}>Ventaja:</strong>
+                                        {
+                                            tipos.map((type, index) => (
+                                                type.damage_relations.double_damage_to.map((type2, index2) => (
+                                                    <span key={`advantage-${index}-${index2}`}>{type2.name} </span>
+                                                ))
                                             ))
-                                        ))
-                                    ): null
-                                }
-                            </p>
-                            <p key={'p6'}>
-                                <strong key={'strong5'}>Ventaja:</strong>
-                                {
-                                    tipos.map((type, index) => (
-                                        type.damage_relations.double_damage_to.map((type2, index2) => (
-                                            <span key={`advantage-${index}-${index2}`}>{type2.name} </span>
-                                        ))
-                                    ))
-                                }
-                            </p>
-                            <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong>
-                                {
-                                    tipos.map((type, index) => (
-                                        type.damage_relations.double_damage_from.map((type2, index2) => (
-                                            <span key={`disadvantage-${index}-${index2}`}>{type2.name} </span>
-                                        ))
-                                    ))
-                                }
-                            </p>
+                                        }
+                                    </p>
+                                </div>
+                                <div id='desventaja' style={{backgroundColor: 'blue'}}>
+                                    <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong>
+                                        {
+                                            tipos.map((type, index) => (
+                                                type.damage_relations.double_damage_from.map((type2, index2) => (
+                                                    <span key={`disadvantage-${index}-${index2}`}>{type2.name} </span>
+                                                ))
+                                            ))
+                                        }
+                                    </p>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
