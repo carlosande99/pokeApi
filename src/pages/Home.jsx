@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import '../App.css';
+import '../css/App.css';
+import '../css/home.css';
 import { Pie } from './Pie';
 import { Link } from "react-router-dom";
 export default function Component() {

@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
-import '../App.css';
+import '../css/App.css';
+import '../css/pokemon.css';
 import { Pie } from './Pie';
 import { Link } from "react-router-dom";
 
@@ -14,6 +15,11 @@ function Pokemons() {
     const [visibleCount] = useState(18);
     const [offset, setOffset] = useState(0);
     const [cantidadPoke, setCantidadPoke] = useState(0);
+
+    useEffect(() => {
+        document.documentElement.style.setProperty('--fondo-url', `url(/container_bg.png)`);
+    })
+    
     useEffect(() => {
         // Llamada a la API para obtener la región
         fetch("https://pokeapi.co/api/v2/region/" + location.state)

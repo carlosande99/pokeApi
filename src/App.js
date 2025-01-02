@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './pages/Layout';
 import Pokemons from './pages/Pokemons';

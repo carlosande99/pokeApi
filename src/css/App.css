@@ -1,0 +1,72 @@
+:root {
+    --fondo-url: none;
+}
+
+*{
+	font-family: "Arial";
+}
+
+body {
+    background-image: var(--fondo-url);
+}
+
+.region, .imagen-contenedor, .iniciales {
+    background-color: transparent;
+}
+.header {
+	font-weight: bold;
+	text-align: center;
+	height: 8vh;
+	border: solid 1px;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	background-color: rgba(255, 128, 0, 0.75);
+	color: blue;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
+	
+}
+.header img {
+	width: 160px;
+	height: 60px;
+}
+
+nav {
+	height: 4vh;
+	background-color: rgba(245, 222, 179, 0.8);
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+}
+
+nav>a{
+	margin-left: 2%;
+}
+
+footer {
+	clear: both;
+	text-align: center;
+	height: 8vh;
+	border: solid 1px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: rgba(255, 128, 0, 0.75);
+	color: blue;
+	display:flex;
+	justify-content: center;
+	align-items: center; 
+	font-style: italic;
+	margin-top: 20px;
+	width: 100%;
+}
+
+a, p, h3, h2{
+    text-decoration: none;
+	color: orange;
+	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
+	text-align: center;
+}

@@ -1,0 +1,41 @@
+.regiones {
+    height: 19vh;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imagen-contenedor img{
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 1);
+    transition: transform 0.3s ease-in-out
+}
+
+.imagen-contenedor img:hover {
+    transform: translateY(-7px);
+}
+
+.imagen-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70%;
+    width: 20%;
+    margin-left: 1vh;
+    margin-right: 2vh;
+}
+
+.imagen-contenedor2{
+    height: 100%;
+    width: 90%;
+}
+
+.iniciales {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
