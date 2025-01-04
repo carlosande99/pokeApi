@@ -116,22 +116,22 @@ function Pokemons() {
         setOffset(prevOffset => prevOffset + visibleCount);
     };
 
-    if (loading) return <p>Cargando...</p>;
-    if (error) return <p>Error: {error}</p>;
-    if (!data || !pokedexData) return <p>Cargando datos de la Pokédex...</p>;
-    if (!nameData) return <p>Cargando Datos...</p>;
+    if (loading) return <p className='colorLetras'>Cargando...</p>;
+    if (error) return <p className='colorLetras'>Error: {error}</p>;
+    if (!data || !pokedexData) return <p className='colorLetras'>Cargando datos de la Pokédex...</p>;
+    if (!nameData) return <p className='colorLetras'>Cargando Datos...</p>;
 
     return (
         <>
             {
                 pokedexData && pokedexData.length > 0 ? (
                     <div key={'1'}>
-                        <h3 key={'1'}>Pokedex de la región de {location.state}:</h3>
+                        <h3 key={'1'} className='colorLetras'>Pokedex de la región de {location.state}:</h3>
                         <div className='pokemon-grid' key={'2'}>
                             {
                                 nameData && nameData.length > 0 ? (
                                     nameData.map((pokemon, index) => (
-                                        <Link state={pokemon.id} to="/Dashboard" key={index}>
+                                        <Link state={pokemon.id} to="/Dashboard" key={index} className='colorLetras'>
                                             <div key={index} className='pokemon-card'>
                                                 <img 
                                                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
@@ -147,7 +147,7 @@ function Pokemons() {
                                         </Link>
                                     ))
                                 ) : (
-                                    <p>Cargando los Pokémon...</p>
+                                    <p className='colorLetras'>Cargando los Pokémon...</p>
                                 )
                             }
                         </div>

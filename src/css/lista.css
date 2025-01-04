@@ -20,7 +20,7 @@
     justify-content: center;
     width: 50%;
     background-color: #b3a7a7a2;
-    margin-right: 2%;
+    margin: 2%;
 }
 #divImage img{
     width: 50%;
@@ -28,14 +28,60 @@
 }
 #divDatos{
     width: 50%;
+    margin: 2%;
+}
+
+#versiones{
+    margin: 2%;
 }
 
 #puntosBase{
+    background-color: #b3a7a71c;
     width: 50%;
+    margin: 2%;
+}
+
+#datosPoke{
+    background-color: #36b1d3;
+}
+
+#datosPokeMenor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    color: black;
+    /* text-align: center; */
+}
+
+.datosPokeMenor2{
+    margin: 5%;
+}
+
+#datosPoke button{
+    
+}
+.pokemon-atributos{
+    text-align: center;
+    padding: auto;
+}
+#puntosBase{
+    width: 50%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+}
+#puntosBase div{
+    margin: 0 auto;
+    display: inline-block;
+}
+
+#puntosBase h4{
+    margin-top: 2%;
+    margin-left: 2%;
 }
 
 #venDesv{
     width: 50%;
+    margin: 2%;
 }
 
 .divPokeBola{
@@ -60,7 +106,7 @@
 
 /*  */
 
-.background-color-bug {
+.background-color-Bicho {
     background: -webkit-linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
     background: -ms-linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
     background: -moz-linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
@@ -70,7 +116,7 @@
     color: #fff
 }
 
-.background-color-dark {
+.background-color-Siniestro {
     background: -webkit-linear-gradient(180deg, #707070 50%, #707070 50%);
     background: -ms-linear-gradient(180deg, #707070 50%, #707070 50%);
     background: -moz-linear-gradient(180deg, #707070 50%, #707070 50%);
@@ -80,7 +126,7 @@
     color: #fff
 }
 
-.background-color-dragon {
+.background-color-Dragón {
     background: -webkit-linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
     background: -ms-linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
     background: -moz-linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
@@ -90,7 +136,7 @@
     color: #fff
 }
 
-.background-color-electric {
+.background-color-Eléctrico {
     background: -webkit-linear-gradient(180deg, #eed535 50%, #eed535 50%);
     background: -ms-linear-gradient(180deg, #eed535 50%, #eed535 50%);
     background: -moz-linear-gradient(180deg, #eed535 50%, #eed535 50%);
@@ -100,7 +146,7 @@
     color: #212121
 }
 
-.background-color-fairy {
+.background-color-Hada {
     background: -webkit-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
     background: -ms-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
     background: -moz-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
@@ -110,7 +156,7 @@
     color: #212121
 }
 
-.background-color-fighting {
+.background-color-Lucha {
     background: -webkit-linear-gradient(180deg, #d56723 50%, #d56723 50%);
     background: -ms-linear-gradient(180deg, #d56723 50%, #d56723 50%);
     background: -moz-linear-gradient(180deg, #d56723 50%, #d56723 50%);
@@ -120,7 +166,7 @@
     color: #fff
 }
 
-.background-color-fire {
+.background-color-Fuego {
     background: -webkit-linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
     background: -ms-linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
     background: -moz-linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
@@ -130,7 +176,7 @@
     color: #fff
 }
 
-.background-color-flying {
+.background-color-Volador {
     background: -webkit-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
     background: -ms-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
     background: -moz-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
@@ -140,7 +186,7 @@
     color: #212121
 }
 
-.background-color-ghost {
+.background-color-Fantasma {
     background: -webkit-linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
     background: -ms-linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
     background: -moz-linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
@@ -150,7 +196,7 @@
     color: #fff
 }
 
-.background-color-grass {
+.background-color-Planta {
     background: -webkit-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
     background: -ms-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
     background: -moz-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
@@ -160,7 +206,7 @@
     color: #212121
 }
 
-.background-color-ground {
+.background-color-Tierra {
     background: -webkit-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
     background: -ms-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
     background: -moz-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
@@ -170,7 +216,7 @@
     color: #212121
 }
 
-.background-color-ice {
+.background-color-Hielo {
     background: -webkit-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
     background: -ms-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
     background: -moz-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
@@ -180,7 +226,7 @@
     color: #212121
 }
 
-.background-color-normal {
+.background-color-Normal {
     background: -webkit-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
     background: -ms-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
     background: -moz-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
@@ -190,7 +236,7 @@
     color: #212121
 }
 
-.background-color-poison {
+.background-color-Veneno {
     background: -webkit-linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
     background: -ms-linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
     background: -moz-linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
@@ -200,7 +246,7 @@
     color: #fff
 }
 
-.background-color-psychic {
+.background-color-Psíquico {
     background: -webkit-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
     background: -ms-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
     background: -moz-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
@@ -210,7 +256,7 @@
     color: #fff
 }
 
-.background-color-rock {
+.background-color-Roca {
     background: -webkit-linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
     background: -ms-linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
     background: -moz-linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
@@ -220,7 +266,7 @@
     color: #fff
 }
 
-.background-color-steel {
+.background-color-Acero {
     background: -webkit-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
     background: -ms-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
     background: -moz-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
@@ -230,7 +276,7 @@
     color: #212121
 }
 
-.background-color-water {
+.background-color-Agua  {
     background: -webkit-linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
     background: -ms-linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
     background: -moz-linear-gradient(180deg, #4592c4 50%, #4592c4 50%);

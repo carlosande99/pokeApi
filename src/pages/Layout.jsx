@@ -9,25 +9,25 @@ const Layout = () => {
                 </Link>
             </div>
             <nav>
-                <Link to="/">G1 Kanto</Link>
+                <Link to="/" className='colorLetras'>G1 Kanto</Link>
         
-                <Link to="/">G2 Johto</Link>
+                <Link to="/" className='colorLetras'>G2 Johto</Link>
         
-                <Link to="/">G3 Hoenn</Link>
+                <Link to="/" className='colorLetras'>G3 Hoenn</Link>
         
-                <Link to="/">G4 Sinnoh</Link>
+                <Link to="/" className='colorLetras'>G4 Sinnoh</Link>
             
-                <Link to="/">G5 Unova</Link>
+                <Link to="/" className='colorLetras'>G5 Unova</Link>
             
-                <Link to="/">G6 Kalos</Link>
+                <Link to="/" className='colorLetras'>G6 Kalos</Link>
         
-                <Link to="/">G7 Alola</Link>
+                <Link to="/" className='colorLetras'>G7 Alola</Link>
             
-                <Link to="/">G8 Galar/Hisui</Link>
+                <Link to="/" className='colorLetras'>G8 Galar/Hisui</Link>
 
-                <Link to="/">G9 Paldea</Link>
+                <Link to="/" className='colorLetras'>G9 Paldea</Link>
 
-                <Link to="/">Pokédex Nacional</Link>
+                <Link to="/" className='colorLetras'>Pokédex Nacional</Link>
             </nav>
             <Outlet/>
         </>

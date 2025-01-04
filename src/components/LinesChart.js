@@ -10,39 +10,39 @@ import {
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+export default function LinesChart({stats}){
+  let midata = {
+    labels: ['PS', 'Ataque', 'Defensa', 'Ataque Especial', 'Defensa Especial', 'Velocidad'], // Etiquetas del eje X
+    datasets: [
+      {
+        label: '', 
+        data: stats || [0,0,0,0,0,0],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)', // Color para PS
+          'rgba(54, 162, 235, 0.6)', // Color para Ataque
+          'rgba(255, 206, 86, 0.6)', // Color para Defensa
+          'rgba(75, 192, 192, 0.6)', // Color para Ataque Especial
+          'rgba(153, 102, 255, 0.6)', // Color para Defensa Especial
+          'rgba(255, 159, 64, 0.6)', // Color para Velocidad
+        ],
+      },
+    ],
+  };
 
-let beneficios = ['hola', 'hola2']
-let meses = ['hola3', 'hola4']
-
-let midata = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'], // Etiquetas del eje X
-  datasets: [
-    {
-      label: 'Ventas 2025', // Leyenda del dataset
-      data: [12, 19, 3, 5, 2, 3], // Valores de las barras
-      backgroundColor: 'rgba(75, 192, 192, 0.6)', // Color de las barras
+  let mioptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: false,
+      },
     },
-    {
-      label: 'Ventas 2024',
-      data: [9, 15, 8, 4, 7, 5],
-      backgroundColor: 'rgba(255, 99, 132, 0.6)',
-    },
-  ],
-};
-
-let mioptions = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Ventas Mensuales - Gráfico de Barras',
-    },
-  },
-};
-
-export default function LinesChart(){
-  return <Bar data={midata} options={mioptions}/>
+  };
+  return (
+    <div style={{ width: '95%'}}>
+      <Bar data={midata} options={mioptions} />
+    </div>
+  );
 };
