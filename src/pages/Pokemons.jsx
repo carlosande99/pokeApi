@@ -74,7 +74,6 @@ function Pokemons() {
         const allPokemonEntries = pokedexData.flatMap(pokedex => 
             pokedex.pokemon_entries || []
         );
-
         // Filtrar entradas duplicadas por nombre de pokemon
         const uniqueEntries = Array.from(new Set(
             allPokemonEntries.map(entry => entry.pokemon_species.name)
@@ -138,7 +137,7 @@ function Pokemons() {
                                                     alt={pokemon.name}
                                                     onError={(e) => {
                                                         e.target.onerror = null;
-                                                        e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`
+                                                        e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
                                                     }}
                                                     className='pokemon-image'
                                                 />
@@ -151,7 +150,7 @@ function Pokemons() {
                                 )
                             }
                         </div>
-                        {offset + visibleCount < cantidadPoke && (
+                        {offset + visibleCount <= cantidadPoke && (
                             <div id='divCargarMas'>
                                 <button onClick={loadMore} id='cargarMas'>Cargar más</button>
                             </div>

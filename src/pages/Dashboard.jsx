@@ -4,7 +4,7 @@ import '../css/App.css';
 import '../css/lista.css';
 import { Pie } from './Pie';
 import LinesChart from '../components/LinesChart.js'
-
+import TypesSpanish from '../components/types.js'
 function Dashboard() {
     const location = useLocation();
     const [data, setData] = useState(null);
@@ -158,21 +158,14 @@ function Dashboard() {
         .then(results => {
             const validResults = results.filter(result => result !== null);
             setTipos(validResults);
-            console.log(validResults)
+            // console.log(validResults)
         })
         .catch(error => {
             console.error("Error en las promesas:", error);
             setError(error.message);
         });
     }, [dataPoke])
-
-    useEffect(() => {
-
-
-    }, []);
     
-
-
     // if necesarios para los useEffect
     if (loading) return <p className='colorLetras'>Cargando...</p>;
     if (error) return <p className='colorLetras'>Error: {error}</p>;
@@ -182,6 +175,7 @@ function Dashboard() {
     if (!habilidades) return <p className='colorLetras'>Cargando datos...</p>;
     if(!datosVersion) return <p className='colorLetras'>Cargando datos...</p>
     if(!ventYdes) return <p className='colorLetras'>Cargando datos...</p>
+
     const formattedId = String(data.id).padStart(4, '0');
     function formatearAltura(altura) {
         const heightInMeters = (altura / 10).toFixed(1);
@@ -203,20 +197,6 @@ function Dashboard() {
         }
     };
     const stats = dataPoke.stats.map(stat => stat.base_stat);
-    const tipo1 = {};
-    const tipo2 = {};
-    filtrarVentajasYdesventajas(tipos, tipo1, tipo2)
-    function filtrarVentajasYdesventajas(tipos, tipo1, tipo2){
-        const datos = []
-        for(let i=0;i<tipos.length;i++){
-            for(let x=0;x<tipos[i].damage_relations.double_damage_from.length;x++){
-                
-                datos.push(tipos[i].damage_relations.double_damage_from[x].name)
-            }
-        }
-        tipo1.double_damage_from = datos
-        console.log(tipo1)
-    }
     return (
         <>
             <div className="datos1" key={'1'}>
@@ -233,7 +213,7 @@ function Dashboard() {
                             alt={data.name}
                             onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`
+                                e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
                             }}
                             className="pokemon-image"
                             key={'img'}
@@ -255,8 +235,8 @@ function Dashboard() {
                                             item.names.map((item2, index2) => (
                                                 item2.language && item2.language.name === 'es' ? (
                                                     <div className='divPokeBola'>
-                                                        <button key={`button-${index}-${index2}`} onClick={() => handleButtonClick(index)} class='botonPokeBola'>
-                                                            <img src={`pokeball-pokemon-svgrepo-com.svg`} alt={`img-${index}-${index2}`} key={`img-${index}-${index2}`} class='pokebolas'>
+                                                        <button key={`button-${index}-${index2}`} onClick={() => handleButtonClick(index)} className='botonPokeBola'>
+                                                            <img src={`pokeball-pokemon-svgrepo-com.svg`} alt={`img-${index}-${index2}`} key={`img-${index}-${index2}`} className='pokebolas'>
                                                             </img>
                                                         </button>
                                                     </div>
@@ -320,40 +300,7 @@ function Dashboard() {
                         </div>
                         {/* ventajas y desventajas */}
                         <div id='venDesv'>
-                            <div id='ventaja'>
-                                <p key={'p6'}>
-                                    <strong key={'strong5'}>Ventaja:</strong>
-                                    {
-                                        tipos.map((type, index) => (
-                                            type.damage_relations.double_damage_to.map((type2, index2) => (
-                                                <span key={`advantage-${index}-${index2}`}>{type2.name} </span>
-                                            ))
-                                        ))
-                                    }
-                                </p>
-                            </div>
-                            <div id='desventaja'>
-                                <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong>
-                                    {
-                                        tipos.map((type, index) => (
-                                            type.damage_relations.double_damage_from.map((type2, index2) => (
-                                                <span key={`disadvantage-${index}-${index2}`}>{type2.name} </span>
-                                            ))
-                                        ))
-                                    }
-                                </p>
-                            </div>
-                            <div id='inmune'>
-                                <p><strong>Inmune:</strong>
-                                    {
-                                        tipos.map((type,index) => (
-                                            type.damage_relations.no_damage_from.map((type2, index2) => (
-                                                <span>{type2.name} </span>
-                                            ))
-                                        ))
-                                    }
-                                </p>
-                            </div>
+                            <TypesSpanish typesNames={tipos}/>
                         </div>
                     </div>
                 </div>
@@ -361,7 +308,7 @@ function Dashboard() {
             <Pie key={'pie'} />
         </>
         
-
+ 
     )
 }
 
