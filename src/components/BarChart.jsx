@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-export default function LinesChart({stats}){
+export default function BarChart({stats}){
   let midata = {
     labels: ['PS', 'Ataque', 'Defensa', 'Ataque Especial', 'Defensa Especial', 'Velocidad'], // Etiquetas del eje X
     datasets: [

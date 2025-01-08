@@ -56,12 +56,10 @@
     margin: 5%;
 }
 
-#datosPoke button{
-    
-}
 .pokemon-atributos{
     text-align: center;
     padding: auto;
+    margin-right: 1%;
 }
 #puntosBase{
     width: 50%;

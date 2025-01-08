@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import '../css/App.css';
 import '../css/lista.css';
 import { Pie } from './Pie';
-import LinesChart from '../components/LinesChart.js'
-import TypesSpanish from '../components/types.js'
+import BarChart from '../components/BarChart.jsx'
+import TypesSpanish from '../components/types.jsx'
 function Dashboard() {
     const location = useLocation();
     const [data, setData] = useState(null);
@@ -280,7 +280,7 @@ function Dashboard() {
                                                     habilidades.map((type, index) => (
                                                         type.names.map((type2, index2) => (
                                                             type2.language && type2.language.name === 'es' ? (
-                                                                <button key={`ability-${index}-${index2}`} className='btn btn-primary'>{type2.name} </button>
+                                                                <button key={`ability-${index}-${index2}`} className='btn btn-primary pokemon-atributos'>{type2.name} </button>
                                                             ) : null
                                                         ))
                                                     ))
@@ -296,7 +296,7 @@ function Dashboard() {
                         {/* puntos base */}
                         <div id='puntosBase' className='rounded'>
                             <h4>Puntos Base</h4>
-                            <LinesChart stats={stats}/>
+                            <BarChart stats={stats}/>
                         </div>
                         {/* ventajas y desventajas */}
                         <div id='venDesv'>

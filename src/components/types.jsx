@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import filtrarVentajasYdesventajas from "./QuitarDupli"
-
+import filtrarVentajasYdesventajas from "../utils/QuitarDupli"
+import { eliminarDuplicados } from "../utils/EliminarDuplicados";
 export default function TypesSpanish({typesNames}) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -56,51 +56,27 @@ export default function TypesSpanish({typesNames}) {
     if (error) return <p className='colorLetras'>Error: {error}</p>;
     if (!typesNames || typesNames.length === 0) return <p className='colorLetras'>No hay tipos disponibles.</p>;
     if (!ventajasYdesventajas || ventajasYdesventajas.length === 0) return <p className='colorLetras'>No hay tipos disponibles.</p>;
+
+    const array1 = ventajasYdesventajas.double_damage_from;
+    const array2 = ventajasYdesventajas.half_damage_from;
+    const [resultado1, resultado2] = eliminarDuplicados(array1, array2);
     return (
         <>    
-            <div id='ventaja'>
-                <p key={'p6'}>
-                    <strong key={'strong5'}>double_to:</strong></p>
+            <div id="ventaja">
+                <p key={'p8'}><strong key={'strong6'}>Ventaja:</strong></p>
                     {
-                        ventajasYdesventajas.double_damage_to.map((type2, index2) => (
+                        resultado2.map((type2, index2) => (
                             <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
                         ))
                     }
-                <p>half_to:</p>
-                {
-                    ventajasYdesventajas.half_damage_to.map((type2, index2) => (
-                        <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
-                    ))
-                }
-                
             </div>
             <div id='desventaja'>
-                <p key={'p7'}><strong key={'strong6'}>double_from:</strong></p>
-                    {
-                        ventajasYdesventajas.double_damage_from.map((type2, index2) => (
-                            <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
-                        ))
-                    }
-                <p>half_from: </p>
+                <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong></p>
                 {
-                    ventajasYdesventajas.half_damage_from.map((type2, index2) => (
+                    resultado1.map((type2, index2) => (
                         <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
                     ))
                 }
-            </div>
-            <div id='inmune'>
-                <p><strong>no_from:</strong></p>
-                    {
-                        ventajasYdesventajas.no_damage_from.map((type2, index2) => (
-                            <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
-                        ))
-                    }
-                <p>no_to</p> 
-                {
-                    ventajasYdesventajas.no_damage_to.map((type2, index2) => (
-                        <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
-                    ))
-                }          
             </div>
         </>
     );

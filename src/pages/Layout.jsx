@@ -1,11 +1,10 @@
 import {Outlet, Link} from 'react-router-dom';
-
 const Layout = () => {
     return (
         <>
             <div className="header">
                 <Link to="/">
-                    <img src="/International_Pokémon_logo.svg.png"></img>
+                    <img src={require('../assets/images/International_Pokémon_logo.svg.png')}></img>
                 </Link>
             </div>
             <nav>
@@ -28,6 +27,10 @@ const Layout = () => {
                 <Link to="/" className='colorLetras'>G9 Paldea</Link>
 
                 <Link to="/" className='colorLetras'>Pokédex Nacional</Link>
+                
+                <div className='w-25'>
+                    <input className="form-control form-control-sm w-75 ms-3" type="text" placeholder="Busque al pokemon por la id o nombre" aria-label=".form-control-sm example"/>
+                </div>
             </nav>
             <Outlet/>
         </>
