@@ -1,171 +1,30 @@
 import { useLocation } from 'react-router-dom';
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import '../css/App.css';
 import '../css/lista.css';
 import { Pie } from './Pie';
 import BarChart from '../components/BarChart.jsx'
 import TypesSpanish from '../components/types.jsx'
 import { useBackground } from '../hooks/useBackground';
+import usePokeSpe from '../hooks/usePokeSpe.js';
+import usePokeVari from '../hooks/usePokeVari.js';
+import useDescrip from '../hooks/useDescrip.js';
+import useButDes from '../hooks/useButDes.js';
+import useAbility from '../hooks/useAbility.js';
+import useTipo from '../hooks/useTipo.js';
+
 function Dashboard() {
     const location = useLocation();
-    const [data, setData] = useState(null);
-    const [dataPoke, setDataPoke] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [descripcion, setDescripcion] = useState([]);
-    const [version, setVersion] = useState([]);
     const [activeDescription, setActiveDescription] = useState(0);
-    const [datosVersion, setDatosVersion] = useState(null);
-    const [habilidades, setAbilidades] = useState([]);
-    const [tipos, setTipos] = useState([]);
-    const [ventYdes, setventYdes] = useState({});
+    const {data, error, loading} = usePokeSpe(location.state)
+    const {dataPoke} = usePokeVari(data)
+    const {descripcion, version} = useDescrip(data)
+    const {datosVersion} = useButDes(version)
+    const {habilidades} = useAbility(dataPoke)
+    const {tipos} = useTipo(dataPoke)
 
     useBackground()
-    //datos principales /pokemon-species
-    useEffect(() => {
-        fetch("https://pokeapi.co/api/v2/pokemon-species/"+location.state)
-        .then((response) => {
-            if (!response.ok) {
-            throw new Error("Error en la solicitud");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            setData(data);
-            setLoading(false);
-        })
-        .catch((err) => {
-            setError(err.message);
-            setLoading(false);
-        });
-    }, [location.state]);
-    //datos principales /pokemon 
-    useEffect(() => {
-        if (!data || !data.varieties) return;
-        fetch(data.varieties[0].pokemon.url)
-            .then((response) => {
-                if (!response.ok) {
-                throw new Error("Error en la solicitud");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setDataPoke(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false);
-            });
-    }, [data]);
-    // descipciones
-    useEffect(() => {
-        if (!data || !data.flavor_text_entries) return;
-        let foundSpanish = false;
-        for(let i=0;i<data.flavor_text_entries.length;i++){
-            if(data.flavor_text_entries[i].language.name === "es"){
-                setDescripcion(nuevoDatos => [...nuevoDatos, data.flavor_text_entries[i].flavor_text])
-                setVersion(versiones => [...versiones, data.flavor_text_entries[i].version.url])
-                foundSpanish = true;
-            }
-        }
-        // Si no se encontró español, buscamos inglés
-        if (!foundSpanish) {
-            for (let i = 0; i < data.flavor_text_entries.length; i++) {
-                const entry = data.flavor_text_entries[i];
-
-                if (entry.language.name === "en") {
-                    setDescripcion(nuevoDatos => [...nuevoDatos, entry.flavor_text]);
-                    setVersion(versiones => [...versiones, entry.version.url]);
-                    break;
-                }
-            }
-        }
-    },[data]);
-    // botones de la descripcion
-    useEffect(() => {
-        if(!version && !version[0]) return;
-        const promises = version.map(entry => {
-            const nombres = entry;
-            return fetch(nombres)
-                .then(response => {
-                    if(!response.ok) {
-                        throw new Error(`Error en la solicitud para obtener la nombres`);
-                    }
-                    return response.json();
-                })
-                .catch(error => {
-                    console.error(`Error fetching para los nombres: `, error);
-                    return null;
-                });
-        });
-        Promise.all(promises)
-            .then(results => {
-                const validResults = results.filter(result => result !== null);
-                setDatosVersion(validResults);
-            })
-            .catch(error => {
-                console.error("Error en las promesas:", error);
-                setError(error.message);
-            });
-    }, [version]);
-    // habilidades que tiene de manera pasiva
-    useEffect(() => {
-        if(!dataPoke) return;
-        const promises = dataPoke.abilities.map(entry => {
-            const ability = entry.ability.url;
-            return fetch(ability)
-                .then(response => {
-                    if(!response.ok) {
-                        throw new Error(`Error en la solicitud para obtener la nombres`);
-                    }
-                    return response.json();
-                })
-                .catch(error => {
-                    console.error(`Error fetching para los nombres: `, error);
-                    return null;
-                });
-        });
-        Promise.all(promises)
-        .then(results => {
-            const validResults = results.filter(result => result !== null);
-            setAbilidades(validResults);
-        })
-        .catch(error => {
-            console.error("Error en las promesas:", error);
-            setError(error.message);
-        });
-    }, [dataPoke])
-    // tipos, ventajas y desventajas
-    useEffect(() => {
-        if(!dataPoke) return;
-        const promises = dataPoke.types.map(entry => {
-            const ability = entry.type.url;
-            return fetch(ability)
-                .then(response => {
-                    if(!response.ok) {
-                        throw new Error(`Error en la solicitud para obtener la nombres`);
-                    }
-                    return response.json();
-                })
-                .catch(error => {
-                    console.error(`Error fetching para los nombres: `, error);
-                    return null;
-                });
-        });
-        Promise.all(promises)
-        .then(results => {
-            const validResults = results.filter(result => result !== null);
-            setTipos(validResults);
-            // console.log(validResults)
-        })
-        .catch(error => {
-            console.error("Error en las promesas:", error);
-            setError(error.message);
-        });
-    }, [dataPoke])
     
-    // if necesarios para los useEffect
     if (loading) return <p className='colorLetras'>Cargando...</p>;
     if (error) return <p className='colorLetras'>Error: {error}</p>;
     if(!data) return <p className='colorLetras'>Cargando datos...</p>
@@ -173,7 +32,6 @@ function Dashboard() {
     if (!version) return <p className='colorLetras'>Cargando datos...</p>;
     if (!habilidades) return <p className='colorLetras'>Cargando datos...</p>;
     if(!datosVersion) return <p className='colorLetras'>Cargando datos...</p>
-    if(!ventYdes) return <p className='colorLetras'>Cargando datos...</p>
 
     const formattedId = String(data.id).padStart(4, '0');
     function formatearAltura(altura) {

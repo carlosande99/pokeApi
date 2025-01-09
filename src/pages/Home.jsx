@@ -20,7 +20,7 @@ function Component() {
               <li>
                 <Link key={index} className="colorLetras" to="/Pokemons" state={region.name}>
                     <img src={require(`../assets/images/${region.name}.png`)} alt={`Región ${region.name}`} className="" />
-                    <h4 className="colorLetras">{region.name[0].toUpperCase() + region.name.substring(1)}</h4>
+                    <h4 className="colorLetras pt-2">{region.name[0].toUpperCase() + region.name.substring(1)}</h4>
                 </Link>
               </li>
           ));

@@ -1,3 +1,9 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --fondo-url: none;
 }
@@ -8,6 +14,9 @@
 
 body {
     background-image: var(--fondo-url);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .principal, .iniciales, .regiones {
@@ -54,20 +63,14 @@ form{
 }
 
 footer {
-	clear: both;
-	text-align: center;
-	height: 8vh;
-	border: solid 1px;
-	border-bottom-right-radius: 20px;
-	border-bottom-left-radius: 20px;
-	background-color: rgba(255, 128, 0, 0.75);
-	color: blue;
-	display:flex;
-	justify-content: center;
-	align-items: center; 
-	font-style: italic;
-	margin-top: 20px;
-	width: 100%;
+    height: 8vh;
+    border: solid 1px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgba(255, 128, 0, 0.75);
+    color: blue;
+    width: 100%;
+    margin-top: auto;
 }
 
 .colorLetras{
