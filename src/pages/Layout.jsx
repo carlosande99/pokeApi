@@ -1,5 +1,15 @@
 import {Outlet, Link} from 'react-router-dom';
-const Layout = () => {
+import { BuscarPokemon } from '../utils/BuscarPokemon';
+import useSearch from '../hooks/useSearch';
+function Layout(){
+    const {search, setSearch, error} = useSearch()
+
+    const handleChange = (event) => {
+        const newQuery = event.target.value
+        if(newQuery.startsWith(' ')) return
+        setSearch(event.target.value)
+    }
+
     return (
         <>
             <div className="header">
@@ -28,9 +38,14 @@ const Layout = () => {
 
                 <Link to="/" className='colorLetras'>Pokédex Nacional</Link>
                 
-                <div className='w-25'>
-                    <input className="form-control form-control-sm w-75 ms-3" type="text" placeholder="Busque al pokemon por la id o nombre" aria-label=".form-control-sm example"/>
-                </div>
+                <form className='form' onSubmit={BuscarPokemon}>
+                    <div className='d-flex w-100 '>
+                        <input className="form-control form-control-sm w-50 ms-3 me-1" type="text" placeholder="Nombre del pokémon..." 
+                        aria-label=".form-control-sm example" name='buscar' value={search} onChange={handleChange}/>
+                        <button type='submit' className='btn btn-secondary btn-sm'>Buscar</button>
+                    </div>
+                    {error && <span style={{color: 'red', fontSize: '12px'}}>{error}</span>}
+                </form>
             </nav>
             <Outlet/>
         </>

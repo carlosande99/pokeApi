@@ -10,7 +10,7 @@ body {
     background-image: var(--fondo-url);
 }
 
-.region, .imagen-contenedor, .iniciales {
+.principal, .iniciales, .regiones {
     background-color: transparent;
 }
 .header {
@@ -45,6 +45,12 @@ nav {
 
 nav>a{
 	margin-left: 2%;
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	width: 25%;
 }
 
 footer {

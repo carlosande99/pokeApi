@@ -15,26 +15,30 @@ function Component() {
       if (error) return <p className="colorLetras">Error: {error}</p>;
 
       const regiones = [];
-      for (let i = 0; i < data.results.length; i += 3) {
-          const grupo = data.results.slice(i, i + 3).map((region, index) => (
-              <Link key={index} className="imagen-contenedor colorLetras" to="/Pokemons" state={region.name}>
-                  <img src={require(`../assets/images/${region.name}.png`)} alt={`Región ${region.name}`} className="imagen-contenedor2" />
-                  <h4 className="colorLetras">{region.name[0].toUpperCase() + region.name.substring(1)}</h4>
-              </Link>
+      for (let i = data.results.length; i <= data.results.length; i++) {
+          const grupo = data.results.map((region, index) => (
+              <li>
+                <Link key={index} className="colorLetras" to="/Pokemons" state={region.name}>
+                    <img src={require(`../assets/images/${region.name}.png`)} alt={`Región ${region.name}`} className="" />
+                    <h4 className="colorLetras">{region.name[0].toUpperCase() + region.name.substring(1)}</h4>
+                </Link>
+              </li>
           ));
           
           regiones.push(
-              <div key={i} className="regiones">
+              <ul key={i} className="regiones">
                   {grupo}
-              </div>
+              </ul>
           );
       }
 
     return (
       <>
+      <div className='principal mt-3'>
         <div className="iniciales">
           {regiones}
         </div>
+      </div>
         <Pie />
       </>
     )

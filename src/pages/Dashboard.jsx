@@ -5,6 +5,7 @@ import '../css/lista.css';
 import { Pie } from './Pie';
 import BarChart from '../components/BarChart.jsx'
 import TypesSpanish from '../components/types.jsx'
+import { useBackground } from '../hooks/useBackground';
 function Dashboard() {
     const location = useLocation();
     const [data, setData] = useState(null);
@@ -19,9 +20,7 @@ function Dashboard() {
     const [tipos, setTipos] = useState([]);
     const [ventYdes, setventYdes] = useState({});
 
-    useEffect(() => {
-        document.documentElement.style.setProperty('--fondo-url', `url(/container_bg.png)`);
-    })
+    useBackground()
     //datos principales /pokemon-species
     useEffect(() => {
         fetch("https://pokeapi.co/api/v2/pokemon-species/"+location.state)
@@ -236,7 +235,7 @@ function Dashboard() {
                                                 item2.language && item2.language.name === 'es' ? (
                                                     <div className='divPokeBola'>
                                                         <button key={`button-${index}-${index2}`} onClick={() => handleButtonClick(index)} className='botonPokeBola'>
-                                                            <img src={`pokeball-pokemon-svgrepo-com.svg`} alt={`img-${index}-${index2}`} key={`img-${index}-${index2}`} className='pokebolas'>
+                                                            <img src={require(`../assets/images/pokeball-pokemon-svgrepo-com.png`)} alt={`img-${index}-${index2}`} key={`img-${index}-${index2}`} className='pokebolas'>
                                                             </img>
                                                         </button>
                                                     </div>
