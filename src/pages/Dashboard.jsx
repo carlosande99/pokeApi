@@ -6,6 +6,8 @@ import { Pie } from './Pie';
 import BarChart from '../components/BarChart.jsx'
 import TypesSpanish from '../components/types.jsx'
 import { useBackground } from '../hooks/useBackground';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 // hooks
 import usePokeSpe from '../hooks/usePokeSpe.js';
 import usePokeVari from '../hooks/usePokeVari.js';
@@ -13,6 +15,8 @@ import useDescrip from '../hooks/useDescrip.js';
 import useButDes from '../hooks/useButDes.js';
 import useAbility from '../hooks/useAbility.js';
 import useTipo from '../hooks/useTipo.js';
+import useAntes from '../hooks/useAntes.js';
+import useDespu from '../hooks/useDespu.js';
 
 function Dashboard() {
     const location = useLocation();
@@ -25,6 +29,8 @@ function Dashboard() {
     const {datosVersion} = useButDes(version)
     const {habilidades} = useAbility(dataPoke)
     const {tipos} = useTipo(dataPoke)
+    const {antes} = useAntes(data)
+    const {desp} = useDespu(data)
 
     useBackground()
     
@@ -35,6 +41,7 @@ function Dashboard() {
     if (!version) return <p className='colorLetras'>Cargando datos...</p>;
     if (!habilidades) return <p className='colorLetras'>Cargando datos...</p>;
     if(!datosVersion) return <p className='colorLetras'>Cargando datos...</p>
+    // if(!antes && !desp) return <p className='colorLetras'>Cargando datos...</p>
 
     const formattedId = String(data.id).padStart(4, '0');
     function formatearAltura(altura) {
@@ -57,11 +64,66 @@ function Dashboard() {
         }
     };
     const stats = dataPoke.stats.map(stat => stat.base_stat);
+    let buscar = null
+    let buscar2 = null
+    if(desp){
+        buscar = desp.id;
+    }
+    if(antes){
+        buscar2 = antes.id
+    }
+    
     return (
         <>
             <div className="datos1" key={'1'}>
-                {/* titulo */}
-                <h2 key={'h2'} className='colorLetras'>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formattedId}</h2>
+                <div className='d-flex justify-content-between w-100'>
+                    <div className='w-25 d-flex align-items-center justify-content-center bg-secondary'>
+                        <a href={`/Dashboard?search=${buscar2}`}>
+                            <span>
+                                <FontAwesomeIcon icon={faArrowRight} rotation={180} style={{color: "#000000",}} />                     
+                            </span>
+                            <span>
+                                N.º{data.id-1}
+                            </span>
+                            <span>
+                                {
+                                    antes ? (
+                                        antes.name.charAt(0).toUpperCase() + antes.name.slice(1)
+                                    ): null
+                                    
+                                }
+                            </span>
+                        </a>
+                    </div>
+                    <div className=''>
+                        {/* titulo */}
+                        <h2 key={'h2'} className='colorLetras'>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formattedId}</h2>
+                        <select className='form-select w-100 mb-2'>
+                            {
+                                data.varieties.map((item, index) => (
+                                    <option value={index}>{item.pokemon.name.charAt(0).toUpperCase() + item.pokemon.name.slice(1)}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className='w-25 d-flex align-items-center justify-content-center bg-secondary'>
+                        <a href={`/Dashboard?search=${buscar}`}>
+                            <span>
+                                {
+                                    desp ? (
+                                        desp.name.charAt(0).toUpperCase() + desp.name.slice(1)
+                                    ) : null
+                                }            
+                            </span>
+                            <span>
+                                N.º{data.id+1}
+                            </span>
+                            <span>
+                                <FontAwesomeIcon icon={faArrowRight} style={{color: "#000000"}} />  
+                            </span>
+                        </a>
+                    </div>
+                </div>
                 {/* datos del pokemon */}
                 <div className="datos" key={'2'}>
                     {/* div imagen, versiones y datos principales */}
@@ -147,9 +209,9 @@ function Dashboard() {
                                                 ): null
                                             }
                                     </div>
-                                    <div className='datosAbility'>
+                                    {/* <div className='datosAbility'>
                                         hola
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
