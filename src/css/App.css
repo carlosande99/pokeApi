@@ -6,6 +6,8 @@ html, body {
 
 :root {
     --fondo-url: none;
+	--bs-nav-link-color: inherit;
+	--bs-btn-color: inherit;
 }
 
 *{
@@ -39,27 +41,7 @@ body {
 	
 }
 .header img {
-	width: 160px;
-	height: 60px;
-}
-
-nav {
-	height: 4vh;
-	background-color: rgba(245, 222, 179, 0.8);
-	display:flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: bold;
-}
-
-nav>a{
-	margin-left: 2%;
-}
-
-form{
-	display: flex;
-	flex-direction: column;
-	width: 25%;
+	width: 15%;
 }
 
 footer {
@@ -76,6 +58,22 @@ footer {
 .colorLetras{
 	color: orange;
 	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
-	text-align: center;
 	text-decoration: none;
+	text-align: center;
+}
+
+li:hover .colorLetras{
+	color: rgb(54, 54, 172) !important;
+}
+
+.nav-link{
+	color: orange !important;
+}
+
+.orange:hover{
+	color: rgb(54, 54, 172) !important;
+}
+
+.orange{
+	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
 }

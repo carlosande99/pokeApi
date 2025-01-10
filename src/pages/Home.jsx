@@ -2,7 +2,6 @@ import '../css/App.css';
 import '../css/home.css';
 import { Pie } from './Pie';
 import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import useApiRegion from "../hooks/useApiRegion";
 import { useBackground } from '../hooks/useBackground';
 

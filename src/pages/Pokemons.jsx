@@ -54,7 +54,7 @@ function Pokemons() {
                             }
                         </div>
                         {offset + visibleCount <= cantidadPoke && (
-                            <div id='divCargarMas'>
+                            <div id='divCargarMas' className='mb-2'>
                                 <button onClick={loadMore} id='cargarMas'>Cargar más</button>
                             </div>
                         )}

@@ -6,6 +6,7 @@ import { Pie } from './Pie';
 import BarChart from '../components/BarChart.jsx'
 import TypesSpanish from '../components/types.jsx'
 import { useBackground } from '../hooks/useBackground';
+// hooks
 import usePokeSpe from '../hooks/usePokeSpe.js';
 import usePokeVari from '../hooks/usePokeVari.js';
 import useDescrip from '../hooks/useDescrip.js';
@@ -15,8 +16,10 @@ import useTipo from '../hooks/useTipo.js';
 
 function Dashboard() {
     const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const searchQuery = queryParams.get('search');
     const [activeDescription, setActiveDescription] = useState(0);
-    const {data, error, loading} = usePokeSpe(location.state)
+    const {data, error, loading} = usePokeSpe(location.state, searchQuery)
     const {dataPoke} = usePokeVari(data)
     const {descripcion, version} = useDescrip(data)
     const {datosVersion} = useButDes(version)
@@ -143,6 +146,9 @@ function Dashboard() {
                                                     ))
                                                 ): null
                                             }
+                                    </div>
+                                    <div className='datosAbility'>
+                                        hola
                                     </div>
                                 </div>
                             </div>

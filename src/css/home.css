@@ -20,7 +20,7 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
 }
-li{
+.regiones li{
     text-align: center;
 }
 li img{
@@ -29,11 +29,13 @@ li img{
     border-radius: 10px;
     border: 2px solid black;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 1);
-    transition: transform 0.3s ease-in-out
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
 
 }
 li img:hover{
     transform: translateY(-7px);
+    
 }
 li p, h4{
     text-align: center;

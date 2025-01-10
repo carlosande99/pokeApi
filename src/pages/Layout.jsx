@@ -1,51 +1,82 @@
-import {Outlet, Link} from 'react-router-dom';
-import { BuscarPokemon } from '../utils/BuscarPokemon';
+import {Outlet, Link, useNavigate} from 'react-router-dom';
 import useSearch from '../hooks/useSearch';
 function Layout(){
     const {search, setSearch, error} = useSearch()
-
+    const navigate = useNavigate();
     const handleChange = (event) => {
+        // controlar lo que se escribe al momento
         const newQuery = event.target.value
         if(newQuery.startsWith(' ')) return
         setSearch(event.target.value)
     }
 
+    const BuscarPokemon = (event) => {
+        event.preventDefault()
+        const {buscar} = Object.fromEntries(new window.FormData(event.target))
+        console.log({buscar})
+        // falta controlar lo que se escribe
+        navigate(`/Dashboard?search=${buscar}`);
+    }
     return (
         <>
             <div className="header">
                 <Link to="/">
-                    <img src={require('../assets/images/International_Pokémon_logo.svg.png')}></img>
+                    <img src={require('../assets/images/International_Pokémon_logo.svg.png')} className='img-fluid'></img>
                 </Link>
             </div>
-            <nav>
-                <Link to="/" className='colorLetras'>G1 Kanto</Link>
-        
-                <Link to="/" className='colorLetras'>G2 Johto</Link>
-        
-                <Link to="/" className='colorLetras'>G3 Hoenn</Link>
-        
-                <Link to="/" className='colorLetras'>G4 Sinnoh</Link>
-            
-                <Link to="/" className='colorLetras'>G5 Unova</Link>
-            
-                <Link to="/" className='colorLetras'>G6 Kalos</Link>
-        
-                <Link to="/" className='colorLetras'>G7 Alola</Link>
-            
-                <Link to="/" className='colorLetras'>G8 Galar/Hisui</Link>
-
-                <Link to="/" className='colorLetras'>G9 Paldea</Link>
-
-                <Link to="/" className='colorLetras'>Pokédex Nacional</Link>
-                
-                <form className='form' onSubmit={BuscarPokemon}>
-                    <div className='d-flex w-100 '>
-                        <input className="form-control form-control-sm w-50 ms-3 me-1" type="text" placeholder="Nombre del pokémon..." 
-                        aria-label=".form-control-sm example" name='buscar' value={search} onChange={handleChange}/>
-                        <button type='submit' className='btn btn-secondary btn-sm'>Buscar</button>
+            <nav className='navbar navbar-expand-lg'>
+                <div className='container-fluid'>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" 
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                        <span className='navbar-toggler-icon'></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Buscar pokémon por generaciones</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div className='offcanvas-body align-items-center'>
+                            <ul className='navbar-nav justify-content-center flex-grow-1'>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G1 Kanto</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G2 Johto</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange '>G3 Hoenn</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G4 Sinnoh</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G5 Unova</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G6 Kalos</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G7 Alola</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G8 Galar/Hisui</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>G9 Paldea</Link>
+                                </li>
+                                <li className='nav-item'>
+                                    <Link to="/" className='nav-link orange'>Pokédex Nacional</Link>
+                                </li>
+                            </ul>    
+                            <form className='d-flex mt-2 mt-lg-0' onSubmit={BuscarPokemon} role='search'>
+                                <input className="form-control me-2" type="search" placeholder="Nombre del pokémon..." 
+                                aria-label="Search" name='buscar' value={search} onChange={handleChange}/>
+                                <button type='submit' className='btn btn-outline-success'>Buscar</button>
+                                {error && <span style={{color: 'red', fontSize: '12px'}}>{error}</span>}
+                            </form>     
+                        </div>
                     </div>
-                    {error && <span style={{color: 'red', fontSize: '12px'}}>{error}</span>}
-                </form>
+                </div>
             </nav>
             <Outlet/>
         </>
