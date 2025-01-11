@@ -31,6 +31,7 @@ export default function BarChart({stats}){
 
   let mioptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -41,7 +42,7 @@ export default function BarChart({stats}){
     },
   };
   return (
-    <div style={{ width: '95%'}}>
+    <div style={{ position: 'relative', width: '100%' }}>
       <Bar data={midata} options={mioptions} />
     </div>
   );

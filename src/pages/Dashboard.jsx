@@ -77,24 +77,22 @@ function Dashboard() {
         <>
             <div className="datos1" key={'1'}>
                 <div className='d-flex justify-content-between w-100'>
-                    <div className='w-25 d-flex align-items-center justify-content-center bg-secondary'>
-                        <a href={`/Dashboard?search=${buscar2}`}>
-                            <span>
-                                <FontAwesomeIcon icon={faArrowRight} rotation={180} style={{color: "#000000",}} />                     
-                            </span>
-                            <span>
-                                N.º{data.id-1}
-                            </span>
-                            <span>
-                                {
-                                    antes ? (
-                                        antes.name.charAt(0).toUpperCase() + antes.name.slice(1)
-                                    ): null
-                                    
-                                }
-                            </span>
-                        </a>
-                    </div>
+                    <a href={`/Dashboard?search=${buscar2}`} className='w-25 d-flex align-items-center justify-content-center bg-secondary btn sigAtr'>
+                        <span className='me-2 float-start'>
+                            <FontAwesomeIcon icon={faArrowRight} rotation={180} style={{color: "#000000",}} />                     
+                        </span>
+                        <span className='me-2'>
+                            N.º{data.id-1}
+                        </span>
+                        <span className='me-2'>
+                            {
+                                antes ? (
+                                    antes.name.charAt(0).toUpperCase() + antes.name.slice(1)
+                                ): null
+                                
+                            }
+                        </span>
+                    </a>
                     <div className=''>
                         {/* titulo */}
                         <h2 key={'h2'} className='colorLetras'>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formattedId}</h2>
@@ -106,8 +104,8 @@ function Dashboard() {
                             }
                         </select>
                     </div>
-                    <div className='w-25 d-flex align-items-center justify-content-center bg-secondary'>
-                        <a href={`/Dashboard?search=${buscar}`}>
+                    <a href={`/Dashboard?search=${buscar}`} className='w-25 d-flex align-items-center justify-content-center bg-secondary btn sigAtr'>                          
+                        <div className='w-100'>
                             <span>
                                 {
                                     desp ? (
@@ -121,8 +119,8 @@ function Dashboard() {
                             <span>
                                 <FontAwesomeIcon icon={faArrowRight} style={{color: "#000000"}} />  
                             </span>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
                 {/* datos del pokemon */}
                 <div className="datos" key={'2'}>
@@ -149,7 +147,7 @@ function Dashboard() {
                                     // Solo muestra la descripción si el índice coincide con el índice activo
                                     activeDescription === index && <p key={`desc-${index}`}>{item}</p>
                                 ))}
-                                <div style={{display: 'flex'}} key={'7'}>
+                                <div className='d-flex' key={'7'}>
                                     <h4 key={'h4'}>Versiones: </h4>
                                     {
                                         datosVersion &&
@@ -157,7 +155,8 @@ function Dashboard() {
                                             item.names.map((item2, index2) => (
                                                 item2.language && item2.language.name === 'es' ? (
                                                     <div className='divPokeBola'>
-                                                        <button key={`button-${index}-${index2}`} onClick={() => handleButtonClick(index)} className='botonPokeBola'>
+                                                        <button key={`button-${index}-${index2}`} onClick={() => handleButtonClick(index)} className='botonPokeBola' 
+                                                        data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom" type='button'>
                                                             <img src={require(`../assets/images/pokeball-pokemon-svgrepo-com.png`)} alt={`img-${index}-${index2}`} key={`img-${index}-${index2}`} className='pokebolas'>
                                                             </img>
                                                         </button>

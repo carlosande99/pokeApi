@@ -6,6 +6,7 @@
 }
 .datos{
     width: 60%;
+    max-width: 800px;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -109,6 +110,13 @@
 
 .btn:hover{
     color: black !important;
+}
+.sigAtr{
+    color: #fff !important;
+}
+.sigAtr:hover{
+    background-color: #36b1d3 !important;
+    color: #fff !important;
 }
 
 /*  */
