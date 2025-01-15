@@ -8,21 +8,36 @@ function useAllPokemon (pokedexData){
 
     useEffect(() => {
         if (!pokedexData) return;
-
-        const allPokemonEntries = pokedexData.flatMap(pokedex => 
-            pokedex.pokemon_entries || []
-        );
-        // Filtrar entradas duplicadas por nombre de pokemon
-        const uniqueEntries = Array.from(new Set(
-            allPokemonEntries.map(entry => entry.pokemon_species.name)
-        )).map(name => 
-            allPokemonEntries.find(entry => entry.pokemon_species.name === name)
-        );
-        setCantidadPoke(uniqueEntries.length)
+        let x = null;
+        let uniqueEntries
+        console.log()
+        if(pokedexData[0].pokemon_entries){
+            const allPokemonEntries = pokedexData.flatMap(pokedex => 
+                pokedex.pokemon_entries || []
+            );
+            // Filtrar entradas duplicadas por nombre de pokemon
+            uniqueEntries = Array.from(new Set(
+                allPokemonEntries.map(entry => entry.pokemon_species.name)
+            )).map(name => 
+                allPokemonEntries.find(entry => entry.pokemon_species.name === name)
+            );
+            setCantidadPoke(uniqueEntries.length)
+        }else{
+            setCantidadPoke(pokedexData.length)
+            uniqueEntries = pokedexData;
+            x = true
+        }
         // Cargar solo los Pokémon visibles
         const promises = uniqueEntries.slice(offset, offset + visibleCount).map(entry => {
-            const pokemonName = entry.pokemon_species.name;
-            const pokemonEspecie = entry.pokemon_species.url;
+            let pokemonName, pokemonEspecie;
+            if(x === null){
+                pokemonName = entry.pokemon_species.name;
+                pokemonEspecie = entry.pokemon_species.url;
+            }else{
+                pokemonName = entry.species.name;
+                pokemonEspecie = entry.species.url;
+            }
+
 
             return fetch(pokemonEspecie)
                 .then(response => {

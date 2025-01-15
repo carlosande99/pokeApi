@@ -5,6 +5,8 @@ function useDescrip (data){
     const [version, setVersion] = useState([]);
         //datos principales /pokemon 
         useEffect(() => {
+            setDescripcion([]);
+            setVersion([]);
             if (!data || !data.flavor_text_entries) return;
             let foundSpanish = false;
             let count = 0

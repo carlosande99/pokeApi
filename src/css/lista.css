@@ -5,41 +5,38 @@
     align-items: center;
 }
 .datos{
-    width: 60%;
     max-width: 800px;
-    display: grid;
     justify-content: center;
     align-items: center;
     background-color: #fff;
 }
 .divPrin{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: dense;
+    grid-template-rows: auto;
+    max-width: 800px;
+    gap: 10px;
+    
 }
 #divImage{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    max-width: 400px;
     background-color: #b3a7a7a2;
-    margin: 2%;
+    margin-top: 2%;
 }
 #divImage img{
     width: 50%;
     height: 80%;
 }
 #divDatos{
-    width: 50%;
-    margin: 2%;
+    max-width: 400px;
 }
 
 #versiones{
-    margin: 2%;
-}
-
-#puntosBase{
-    background-color: #b3a7a71c;
-    width: 50%;
-    margin: 2%;
+    margin-top: 2%;
 }
 
 #datosPoke{
@@ -50,7 +47,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     color: black;
-    /* text-align: center; */
 }
 .datosAbility{
     width: 100%;
@@ -64,14 +60,12 @@
 
 .pokemon-atributos{
     text-align: center;
-    padding: auto;
     margin-right: 1%;
 }
 #puntosBase{
-    width: 50%;
-    margin: 2%;
-    display: flex;
+    width: 100%;
     flex-direction: column;
+    background-color: #b3a7a71c;
 }
 #puntosBase div{
     margin: 0 auto;
@@ -80,12 +74,10 @@
 
 #puntosBase h4{
     margin-top: 2%;
-    margin-left: 2%;
 }
 
 #venDesv{
-    width: 50%;
-    margin: 2%;
+    width: 395px;
 }
 
 .divPokeBola{
@@ -117,6 +109,15 @@
 .sigAtr:hover{
     background-color: #36b1d3 !important;
     color: #fff !important;
+}
+
+@media (max-width: 800px) {
+    .divPrin {
+        grid-template-columns: 1fr;
+        #divDatos{
+            /* width: 98%; */
+        }
+    }
 }
 
 /*  */

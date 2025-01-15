@@ -41,7 +41,6 @@ function Dashboard() {
     if (!version) return <p className='colorLetras'>Cargando datos...</p>;
     if (!habilidades) return <p className='colorLetras'>Cargando datos...</p>;
     if(!datosVersion) return <p className='colorLetras'>Cargando datos...</p>
-    // if(!antes && !desp) return <p className='colorLetras'>Cargando datos...</p>
 
     const formattedId = String(data.id).padStart(4, '0');
     function formatearAltura(altura) {
@@ -185,7 +184,7 @@ function Dashboard() {
                                                     type2.names && type2.names.length > 0 ? (
                                                         type2.names.map((type, index) => (
                                                             type.language && type.language.name === 'es' ? (
-                                                                <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn`}>{type.name} </span>
+                                                                <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
                                                             ): null
                                                         ))
                                                     ): null
@@ -201,16 +200,13 @@ function Dashboard() {
                                                     habilidades.map((type, index) => (
                                                         type.names.map((type2, index2) => (
                                                             type2.language && type2.language.name === 'es' ? (
-                                                                <button key={`ability-${index}-${index2}`} className='btn btn-primary pokemon-atributos'>{type2.name} </button>
+                                                                <button key={`ability-${index}-${index2}`} className='btn btn-primary pokemon-atributos mb-1 me-1'>{type2.name}</button>
                                                             ) : null
                                                         ))
                                                     ))
                                                 ): null
                                             }
                                     </div>
-                                    {/* <div className='datosAbility'>
-                                        hola
-                                    </div> */}
                                 </div>
                             </div>
                         </div>

@@ -66,7 +66,7 @@ export default function TypesSpanish({typesNames}) {
                 <p key={'p8'}><strong key={'strong6'}>Ventaja:</strong></p>
                     {
                         resultado2.map((type2, index2) => (
-                            <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
+                            <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn mb-1`}>{typesSpanish[type2] || "Desconocido"} </span>
                         ))
                     }
             </div>
@@ -74,7 +74,7 @@ export default function TypesSpanish({typesNames}) {
                 <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong></p>
                 {
                     resultado1.map((type2, index2) => (
-                        <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn`}>{typesSpanish[type2] || "Desconocido"} </span>
+                        <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn mb-1`}>{typesSpanish[type2] || "Desconocido"} </span>
                     ))
                 }
             </div>

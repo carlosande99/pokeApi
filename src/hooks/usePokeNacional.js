@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
-function usePokedex(data){
+function usePokeNacional (data){
     const [pokedexData, setPokedexData] = useState(null);
     useEffect(() => {
-        if (!data || !data.pokedexes) return;
+        if (!data || !data.results) return;
 
-        const promises = data.pokedexes.map(entry => {
+        const promises = data.results.map(entry => {
             const pokedex = entry.url;
             return fetch(pokedex)
                 .then(response => {
@@ -24,15 +24,14 @@ function usePokedex(data){
             .then(results => {
                 const validResults = results.filter(result => result !== null);
                 setPokedexData(validResults);
-                console.log(validResults)
             })
             .catch(error => {
                 console.error("Error en las promesas:", error);
                 return error;
             });
-    }, [data]);
+    }, [data])
 
-    return {pokedexData};
+    return{pokedexData}
 }
 
-export default usePokedex;
+export default usePokeNacional ;

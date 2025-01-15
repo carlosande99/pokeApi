@@ -20,9 +20,11 @@ function Layout(){
     return (
         <>
             <div className="header">
-                <Link to="/">
-                    <img src={require('../assets/images/International_Pokémon_logo.svg.png')} className='img-fluid'></img>
-                </Link>
+                <div>
+                    <Link to="/">
+                        <img src={require('../assets/images/International_Pokémon_logo.svg.png')} className='img-fluid'></img>
+                    </Link>
+                </div>
             </div>
             <nav className='navbar navbar-expand-lg'>
                 <div className='container-fluid'>
@@ -65,7 +67,7 @@ function Layout(){
                                     <Link to="/" className='nav-link orange'>G9 Paldea</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/" className='nav-link orange'>Pokédex Nacional</Link>
+                                    <Link to="/Nacional" className='nav-link orange'>Pokédex Nacional</Link>
                                 </li>
                             </ul>    
                             <form className='d-flex mt-2 mt-lg-0' onSubmit={BuscarPokemon} role='search'>

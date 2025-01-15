@@ -5,6 +5,7 @@ import Pokemons from './pages/Pokemons';
 import Home from './pages/Home';
 import Default from './pages/Default';
 import Dashboard from './pages/Dashboard';
+import Nacional from './pages/Nacional';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="pokemons" element={<Pokemons/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="dashboard" element={<Dashboard/>}/>
+          <Route path="Nacional" element={<Nacional/>}/>
           <Route path="*" element={<Default/>}/>
         </Route>
       </Routes>
