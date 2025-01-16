@@ -24,7 +24,6 @@ function usePokedex(data){
             .then(results => {
                 const validResults = results.filter(result => result !== null);
                 setPokedexData(validResults);
-                console.log(validResults)
             })
             .catch(error => {
                 console.error("Error en las promesas:", error);

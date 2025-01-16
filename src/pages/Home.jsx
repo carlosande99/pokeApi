@@ -17,7 +17,7 @@ function Component() {
       for (let i = data.results.length; i <= data.results.length; i++) {
           const grupo = data.results.map((region, index) => (
               <li>
-                <Link key={index} className="colorLetras" to="/Pokemons" state={region.name}>
+                <Link key={index} className="colorLetras" to={"/Pokemons/"+region.name} state={region.name}>
                     <img src={require(`../assets/images/${region.name}.png`)} alt={`Región ${region.name}`} className="" />
                     <h4 className="colorLetras pt-2">{region.name[0].toUpperCase() + region.name.substring(1)}</h4>
                 </Link>

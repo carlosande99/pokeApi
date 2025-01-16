@@ -9,7 +9,7 @@ import useAllPokemon from '../hooks/useAllPokemon';
 function Nacional (){
     const {pokemons, loading, error, fetchPokemons} = useNacional()
     const {pokedexData} = usePokeNacional(pokemons)
-    const {cantidadPoke, offset, setOffset, nameData, visibleCount} = useAllPokemon(pokedexData)
+    const {setOffset, nameData, visibleCount} = useAllPokemon(pokedexData)
 
     useBackground()
     if (loading) return <p className='colorLetras'>Cargando...</p>;
@@ -19,7 +19,7 @@ function Nacional (){
     return (
         <>
             {
-                <PokemonReturn location={"Nacional"} nameData={nameData} offset={offset} visibleCount={visibleCount} cantidadPoke={cantidadPoke} setOffset={setOffset} fetchPokemons={fetchPokemons}/>
+                <PokemonReturn nameData={nameData} visibleCount={visibleCount} setOffset={setOffset} fetchPokemons={fetchPokemons}/>
             }
             <Pie />
         </>

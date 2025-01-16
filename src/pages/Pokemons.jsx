@@ -12,7 +12,7 @@ function Pokemons() {
     const location = useLocation();
     const {data, loading, error} = useApiRegion(location.state);
     const {pokedexData} = usePokedex(data);
-    const {cantidadPoke, offset, setOffset, nameData, visibleCount} = useAllPokemon(pokedexData)
+    const {setOffset, nameData, visibleCount} = useAllPokemon(pokedexData)
     useBackground()
 
     if (loading) return <p className='colorLetras'>Cargando...</p>;
@@ -24,7 +24,7 @@ function Pokemons() {
         <>
             {
                 pokedexData && pokedexData.length > 0 ? (
-                    <PokemonReturn location={location} nameData={nameData} offset={offset} visibleCount={visibleCount} cantidadPoke={cantidadPoke} setOffset={setOffset}/>
+                    <PokemonReturn location={location} nameData={nameData} visibleCount={visibleCount} setOffset={setOffset}/>
                 ) : null
             }
             <Pie />

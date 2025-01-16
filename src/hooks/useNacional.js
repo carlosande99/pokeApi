@@ -32,6 +32,7 @@ function useNacional (){
     useEffect(() => {
         fetchPokemons();
     }, []);
+    
     return{pokemons, loading, error, fetchPokemons}
 }
 

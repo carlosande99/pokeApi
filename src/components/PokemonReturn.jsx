@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-
-function PokemonReturn ({ location, nameData, offset, visibleCount, cantidadPoke, setOffset , fetchPokemons}) {
+ 
+function PokemonReturn ({ location, nameData, visibleCount, setOffset , fetchPokemons}) {
     const loadMore = () => {
         setOffset(prevOffset => prevOffset + visibleCount);
     };
@@ -18,7 +18,7 @@ function PokemonReturn ({ location, nameData, offset, visibleCount, cantidadPoke
                     {
                         nameData && nameData.length > 0 ? (
                             nameData.map((pokemon, index) => (
-                                <Link state={pokemon.id} to="/Dashboard" key={index} className='colorLetras'>
+                                <Link state={pokemon.id} to={"/Dashboard/"+pokemon.name} key={index} className='colorLetras'>
                                     <div key={index} className='pokemon-card'>
                                         <img 
                                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}

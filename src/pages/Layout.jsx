@@ -13,9 +13,9 @@ function Layout(){
     const BuscarPokemon = (event) => {
         event.preventDefault()
         const {buscar} = Object.fromEntries(new window.FormData(event.target))
-        console.log({buscar})
-        // falta controlar lo que se escribe
-        navigate(`/Dashboard?search=${buscar}`);
+        if (buscar.trim()) {  // Verificamos que no esté vacío
+            navigate(`/dashboard/${buscar.toLowerCase()}`); // Usamos el parámetro en la ruta
+        }
     }
     return (
         <>
