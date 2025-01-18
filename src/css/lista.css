@@ -111,6 +111,10 @@
     color: #fff !important;
 }
 
+.botones{
+    height: 90px;
+}
+
 @media (max-width: 800px) {
     .divPrin {
         grid-template-columns: 1fr;

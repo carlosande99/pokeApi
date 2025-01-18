@@ -1,7 +1,6 @@
 import BarChart from '../components/BarChart.jsx'
 import TypesSpanish from '../components/types.jsx'
-import { Link } from "react-router-dom";
-function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPoke, setActiveDescription, tipos, habilidades }){
+function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPoke, setActiveDescription, tipos, habilidades, formas }){
     function formatearAltura(altura) {
         const heightInMeters = (altura / 10).toFixed(1);
         const formattedHeight = `${heightInMeters} m`;
@@ -22,6 +21,8 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
         }
     };
     const stats = dataPoke.stats.map(stat => stat.base_stat);
+    if(!formas) return
+    console.log(formas.id)
     return (
         <>
                 {/* datos del pokemon */}
@@ -30,25 +31,43 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                     <div key={'3'} className='divPrin'>
                         {/* la imagen */}
                         <div key={'4'} id='divImage' className='rounded'>
-                            <img 
-                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
-                            alt={data.name}
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
-                            }}
-                            className="pokemon-image"
-                            key={'img'}
-                            />
+                            {
+                                formas.length === 0 ?(
+                                    <img
+                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
+                                        alt={data.name}
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
+                                        }}
+                                        className="pokemon-image"
+                                        key={'img'}
+                                    />
+                                ):
+                                    <img
+                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${formas.id}.svg`}
+                                        alt={data.name}
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${formas.id}.png`
+                                        }}
+                                        className="pokemon-image"
+                                        key={'img'}
+                                    />
+
+                            }
+
                         </div>
                         {/* datos */}
                         <div key={'5'} id='divDatos'>
                             {/* datos de las descripciones */}
                             <div key={'6'} id='versiones'>
-                                {descripcion.map((item, index) => (
-                                    // Solo muestra la descripción si el índice coincide con el índice activo
-                                    activeDescription === index && <p key={`desc-${index}`}>{item}</p>
-                                ))}
+                                {
+                                    descripcion.map((item, index) => (
+                                        // Solo muestra la descripción si el índice coincide con el índice activo
+                                        activeDescription === index && <p key={`desc-${index}`}>{item}</p>
+                                    ))
+                                }
                                 <div className='d-flex' key={'7'}>
                                     <h4 key={'h4'}>Versiones: </h4>
                                     {
@@ -73,25 +92,44 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                             <div id='datosPoke' className='rounded'>
                                 <div id='datosPokeMenor'>
                                     <div className='datosPokeMenor2'>
-                                        <p key={'p1'}><strong key={'strong1'}>Altura:</strong></p><span>{altura}</span>
+                                        <p key={'p1'}><strong key={'strong1'}>Altura:</strong></p>
+                                        {                                           
+                                            formas.length === 0 ?(
+                                                <span>{altura}</span>
+                                            ): 
+                                                <span>{formas.height}</span>
+                                        }
+                                        
                                     </div>
                                     <div className='datosPokeMenor2'>
-                                        <p key={'p2'}><strong key={'strong2'}>Peso:</strong></p><span>{peso}</span>
+                                        <p key={'p2'}><strong key={'strong2'}>Peso:</strong></p>
+                                        {
+                                            formas.length === 0 ?(
+                                                <span>{peso}</span>
+                                            ):
+                                                <span>{formas.weight}</span>
+                                        }
+                                        
                                     </div>
                                     <div className='datosPokeMenor2'>
                                         <p key={'p4'}>
                                             <strong key={'strong3'}>Tipos: </strong>
                                         </p>
                                             {
-                                                tipos.map((type2, index2) => (
-                                                    type2.names && type2.names.length > 0 ? (
-                                                        type2.names.map((type, index) => (
-                                                            type.language && type.language.name === 'es' ? (
-                                                                <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
-                                                            ): null
-                                                        ))
-                                                    ): null
-                                                ))
+                                                formas.length === 0 ?(
+                                                    tipos.map((type2, index2) => (
+                                                        type2.names && type2.names.length > 0 ? (
+                                                            type2.names.map((type, index) => (
+                                                                type.language && type.language.name === 'es' ? (
+                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
+                                                                ): null
+                                                            ))
+                                                        ): null
+                                                    ))
+                                                ):
+                                                    formas.types.map((type2, index2) => (
+                                                        <span key={`type-${index2}`} className={`background-color-`+type2.type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type2.type.name}</span>
+                                                    ))
                                             }
                                     </div>
                                     <div className='datosPokeMenor2'>
@@ -119,7 +157,14 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                         {/* puntos base */}
                         <div id='puntosBase' className='rounded'>
                             <h4>Puntos Base</h4>
-                            <BarChart stats={stats}/>
+                            {
+                                formas.length === 0 ?(
+                                    <BarChart stats={stats}/>
+                                ): 
+                                
+                                    <BarChart stats={formas.stats.map(stat2 => stat2.base_stat)}/>
+                            }
+                            
                         </div>
                         {/* ventajas y desventajas */}
                         <div id='venDesv'>
