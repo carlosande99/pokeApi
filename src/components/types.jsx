@@ -1,12 +1,43 @@
-import { useState, useEffect } from "react";
+import React, { Component } from "react";
 import filtrarVentajasYdesventajas from "../utils/QuitarDupli"
 import { eliminarDuplicados } from "../utils/EliminarDuplicados";
-export default function TypesSpanish({typesNames}) {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [typesSpanish, setTypesSpanish] = useState({});
-    const [ventajasYdesventajas, setVentajasYdesventajas] = useState({});
-    useEffect(() => {
+
+class TypesSpanish extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            error: null,
+            typesSpanish: {},
+            ventajasYdesventajas: {},
+            errorDuplicados: null,
+            resultadoVentajas: [],
+            resultadoDesventajas: []
+        };
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        try {
+            if (!props.typesNames || props.typesNames.length === 0) {
+                return { errorDuplicados: 'No hay tipos para procesar' };
+            }
+
+            const array1 = state.ventajasYdesventajas?.double_damage_from || [];
+            const array2 = state.ventajasYdesventajas?.half_damage_from || [];
+
+            const [resultado1, resultado2] = eliminarDuplicados(array1, array2);
+
+            return {
+                errorDuplicados: null,
+                resultadoVentajas: resultado2,
+                resultadoDesventajas: resultado1
+            };
+        } catch (error) {
+            return { errorDuplicados: `Error al procesar duplicados: ${error.message}` };
+        }
+    }
+
+    componentDidMount() {
         // Función para obtener los tipos
         const fetchTypes = async () => {
             try {
@@ -38,46 +69,65 @@ export default function TypesSpanish({typesNames}) {
                     return acc;
                 }, {});
 
-                setTypesSpanish(map);
+                this.setState({ typesSpanish: map });
             } catch (err) {
-                setError(err.message);
+                this.setState({ error: err.message });
             } finally {
-                setLoading(false);
+                this.setState({ loading: false });
             }
         };
         fetchTypes();
-    }, []); 
-    useEffect(() => {
-        if (!typesNames || typesNames.length === 0) return;
-        const prueba = filtrarVentajasYdesventajas(typesNames);
-        setVentajasYdesventajas(prueba);
-    }, [typesNames]);
-    if (loading) return <p className='colorLetras'>Cargando...</p>;
-    if (error) return <p className='colorLetras'>Error: {error}</p>;
-    if (!typesNames || typesNames.length === 0) return <p className='colorLetras'>No hay tipos disponibles.</p>;
-    if (!ventajasYdesventajas || ventajasYdesventajas.length === 0) return <p className='colorLetras'>No hay tipos disponibles.</p>;
+    }
 
-    const array1 = ventajasYdesventajas.double_damage_from;
-    const array2 = ventajasYdesventajas.half_damage_from;
-    const [resultado1, resultado2] = eliminarDuplicados(array1, array2);
-    return (
-        <>    
-            <div id="ventaja">
-                <p key={'p8'}><strong key={'strong6'}>Ventaja:</strong></p>
+    componentDidUpdate(prevProps) {
+        if (prevProps.typesNames !== this.props.typesNames) {
+            const prueba = filtrarVentajasYdesventajas(this.props.typesNames);
+            this.setState({ ventajasYdesventajas: prueba });
+        }
+    }
+
+    render() {
+        const { loading, error, typesSpanish, ventajasYdesventajas, errorDuplicados, resultadoVentajas, resultadoDesventajas } = this.state;
+        const { typesNames } = this.props;
+
+        if (loading) return <p className='colorLetras'>Cargando...</p>;
+        if (error) return <p className='colorLetras'>Error: {error}</p>;
+        if (!typesNames || typesNames.length === 0) return <p className='colorLetras'>No hay tipos disponibles.</p>;
+        if (!ventajasYdesventajas || ventajasYdesventajas.length === 0) return <p className='colorLetras'>No hay tipos disponibles.</p>;
+
+        if (errorDuplicados) return <p className='colorLetras'>Error: {errorDuplicados}</p>;
+
+        return (
+            <>    
+                <div id="ventaja">
+                    <p key={'p8'}><strong key={'strong6'}>Ventaja:</strong></p>
                     {
-                        resultado2.map((type2, index2) => (
-                            <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn mb-1`}>{typesSpanish[type2] || "Desconocido"} </span>
+                        resultadoVentajas.map((type2, index2) => (
+                            <span 
+                                key={`ventaja-${type2}-${index2}`} 
+                                className={`background-color-${typesSpanish[type2]} pokemon-atributos btn mb-1`}
+                            >
+                                {typesSpanish[type2] || "Desconocido"} 
+                            </span>
                         ))
                     }
-            </div>
-            <div id='desventaja'>
-                <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong></p>
-                {
-                    resultado1.map((type2, index2) => (
-                        <span className={`background-color-`+typesSpanish[type2]+` `+`pokemon-atributos btn mb-1`}>{typesSpanish[type2] || "Desconocido"} </span>
-                    ))
-                }
-            </div>
-        </>
-    );
+                </div>
+                <div id='desventaja'>
+                    <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong></p>
+                    {
+                        resultadoDesventajas.map((type2, index2) => (
+                            <span 
+                                key={`desventaja-${type2}-${index2}`}
+                                className={`background-color-${typesSpanish[type2]} pokemon-atributos btn mb-1`}
+                            >
+                                {typesSpanish[type2] || "Desconocido"} 
+                            </span>
+                        ))
+                    }
+                </div>
+            </>
+        );
+    }
 }
+
+export default TypesSpanish;

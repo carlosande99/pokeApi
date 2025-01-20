@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../css/App.css';
 import '../css/lista.css';
 import { Pie } from './Pie';
@@ -12,25 +12,28 @@ import usePokeVari from '../hooks/usePokeVari.js';
 import useDescrip from '../hooks/useDescrip.js';
 import useButDes from '../hooks/useButDes.js';
 import useAbility from '../hooks/useAbility.js';
-import useTipo from '../hooks/useTipo.js';
 import useVarieties from '../hooks/useVarieties.js';
 
 function Dashboard() {
-    const [selectedIndex, setSelectIndex] = useState(0);
     const {pokemon} = useParams();
     const location = useLocation();
     const [activeDescription, setActiveDescription] = useState(0);
     const {data, error, loading} = usePokeSpe(location.state, pokemon)
+    const [selectedIndex, setSelectIndex] = useState(data?.varieties[0]?.pokemon.name || '');
+    const {pokemons} = useVarieties(selectedIndex || ''); 
     const {dataPoke} = usePokeVari(data)
     const {descripcion, version} = useDescrip(data)
     const {datosVersion} = useButDes(version)
-    const {habilidades} = useAbility(dataPoke)
-    const {tipos} = useTipo(dataPoke)
-    const {pokemons} = useVarieties(selectedIndex); 
+    const {habilidades} = useAbility(pokemons)
+
+    useEffect(() => {
+        if (data?.varieties?.length > 0) {
+            setSelectIndex(data.varieties[0].pokemon.name); // Selecciona el primero
+        }
+    }, [data]);
 
     function handleChange(event) {
         setSelectIndex(event.target.value)
-        console.log(event.target.value)
     };
 
     useBackground()
@@ -44,19 +47,19 @@ function Dashboard() {
     if(!datosVersion) return <p className='colorLetras'>Cargando datos...</p>
     return (
         <>
-            <div className="datos1" key={'1'}>
+            <div className="datos1" key={'datos1'}>
                 <TituloPoke
                     data={data}
                     handleChange={handleChange}
+                    selectedIndex={selectedIndex}
                 />
                 <DatosPoke 
                     data={data} 
                     descripcion={descripcion} 
                     activeDescription={activeDescription} 
-                    datosVersion={datosVersion} 
-                    dataPoke={dataPoke} 
+                    datosVersion={datosVersion}
+                    dataPoke={dataPoke}
                     setActiveDescription={setActiveDescription} 
-                    tipos={tipos} 
                     habilidades={habilidades}
                     formas={pokemons}
                 />

@@ -4,6 +4,7 @@ function useAbility (dataPoke){
     const [habilidades, setAbilidades] = useState([]);
         useEffect(() => {
             if(!dataPoke) return;
+            if(dataPoke.length === 0) return
             const promises = dataPoke.abilities.map(entry => {
                 const ability = entry.ability.url;
                 return fetch(ability)

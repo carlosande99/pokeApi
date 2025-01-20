@@ -4,6 +4,7 @@ function useTipo (dataPoke){
     const [tipos, setTipos] = useState([]);
         useEffect(() => {
             if(!dataPoke) return;
+            if(dataPoke.length === 0) return
             const promises = dataPoke.types.map(entry => {
                 const ability = entry.type.url;
                 return fetch(ability)
@@ -21,7 +22,7 @@ function useTipo (dataPoke){
             Promise.all(promises)
             .then(results => {
                 const validResults = results.filter(result => result !== null);
-                setTipos(validResults);
+                setTipos(validResults)
             })
             .catch(error => {
                 console.error("Error en las promesas:", error);

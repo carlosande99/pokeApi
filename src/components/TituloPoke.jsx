@@ -3,7 +3,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import useAntes from '../hooks/useAntes.js';
 import useDespu from '../hooks/useDespu.js';
-function TituloPoke ({ data, handleChange }){
+function TituloPoke ({ data, handleChange, selectedIndex }){
     const {antes} = useAntes(data)
     const {desp} = useDespu(data)
     let buscar = null
@@ -21,13 +21,13 @@ function TituloPoke ({ data, handleChange }){
         <>
             <div className='d-flex justify-content-between w-100'>
                     <Link to={`/Dashboard/${antes.name}`} state={buscar2} className='w-25 d-flex align-items-center justify-content-center bg-secondary btn sigAtr botones'>
-                        <span className='me-2 float-start'>
+                        <span key="arrow-left" className='me-2 float-start'>
                             <FontAwesomeIcon icon={faArrowRight} rotation={180} style={{color: "#000000",}} />                     
                         </span>
-                        <span className='me-2'>
+                        <span key="id-prev" className='me-2'>
                             N.º{antes.id}
                         </span>
-                        <span className='me-2'>
+                        <span key="name-prev" className='me-2'>
                             {
                                 antes ? (
                                     antes.name.charAt(0).toUpperCase() + antes.name.slice(1)
@@ -36,15 +36,17 @@ function TituloPoke ({ data, handleChange }){
                             }
                         </span>
                     </Link>
-                    <div className=''>
+                    <div className='' key="titulo-container">
                         {/* titulo */}
                         <h2 key={'h2'} className='colorLetras'>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formattedId}</h2>
                         {
                             data.varieties.length != 1 ?(
-                                <select className='form-select w-100 mb-2' onChange={handleChange}>
+                                <select className='form-select w-100 mb-2' onChange={handleChange} value={selectedIndex} key="varieties-select">
                                     {
-                                        data.varieties.map((item, index) => (
-                                            <option key={item + index} value={item.pokemon.name}>{item.pokemon.name.charAt(0).toUpperCase() + item.pokemon.name.slice(1)}</option>
+                                        data.varieties.map((item, index) => ( 
+                                            <option key={`variety-${index}`} value={item.pokemon.name}>
+                                                {item.pokemon.name.charAt(0).toUpperCase() + item.pokemon.name.slice(1)}
+                                            </option>
                                         ))
                                     }
                                 </select>
@@ -56,17 +58,17 @@ function TituloPoke ({ data, handleChange }){
                     </div>
                     <Link to={`/Dashboard/${desp.name}`} state={buscar} className='w-25 d-flex align-items-center justify-content-center bg-secondary btn sigAtr botones'>                          
                         <div className='w-100'>
-                            <span>
+                            <span key="name-next">
                                 {
                                     desp ? (
                                         desp.name.charAt(0).toUpperCase() + desp.name.slice(1)
                                     ) : null
                                 }            
                             </span>
-                            <span>
+                            <span key="id-next">
                                 N.º{desp.id}
                             </span>
-                            <span>
+                            <span key="arrow-right">
                                 <FontAwesomeIcon icon={faArrowRight} style={{color: "#000000"}} />  
                             </span>
                         </div>
