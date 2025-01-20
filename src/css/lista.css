@@ -115,6 +115,28 @@
     height: 90px;
 }
 
+.evoluciones{
+    width: 800px;
+    height: 350px;
+    background-color: #36b1d3;
+    text-align: center;
+}
+.fotos{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.evo-fotos{
+    background-color: black;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+.evo-fotos img{
+    width: 100%;
+    height: 100%;
+}
 @media (max-width: 800px) {
     .divPrin {
         grid-template-columns: 1fr;
