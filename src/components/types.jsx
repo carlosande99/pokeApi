@@ -102,27 +102,34 @@ class TypesSpanish extends Component {
                 <div id="ventaja">
                     <p key={'p8'}><strong key={'strong6'}>Ventaja:</strong></p>
                     {
-                        resultadoVentajas.map((type2, index2) => (
-                            <span 
-                                key={`ventaja-${type2}-${index2}`} 
-                                className={`background-color-${typesSpanish[type2]} pokemon-atributos btn mb-1`}
-                            >
-                                {typesSpanish[type2] || "Desconocido"} 
-                            </span>
-                        ))
+                        resultadoVentajas.length > 0 ?(
+                            resultadoVentajas.map((type2, index2) => (
+                                <span 
+                                    key={`ventaja-${type2}-${index2}`} 
+                                    className={`background-color-${typesSpanish[type2]} pokemon-atributos btn mb-1`}
+                                >
+                                    {typesSpanish[type2] || "Desconocido"} 
+                                </span>
+                            ))
+                        ): 
+                            <span className={`background-color-Normal pokemon-atributos btn mb-1`} key={"Ninguna"}>Ninguna</span>
+
                     }
                 </div>
                 <div id='desventaja'>
                     <p key={'p7'}><strong key={'strong6'}>Desventaja:</strong></p>
                     {
-                        resultadoDesventajas.map((type2, index2) => (
-                            <span 
-                                key={`desventaja-${type2}-${index2}`}
-                                className={`background-color-${typesSpanish[type2]} pokemon-atributos btn mb-1`}
-                            >
-                                {typesSpanish[type2] || "Desconocido"} 
-                            </span>
-                        ))
+                        resultadoDesventajas.length > 0 ? (
+                            resultadoDesventajas.map((type2, index2) => (
+                                <span 
+                                    key={`desventaja-${type2}-${index2}`}
+                                    className={`background-color-${typesSpanish[type2]} pokemon-atributos btn mb-1`}
+                                >
+                                    {typesSpanish[type2] || "Desconocido"} 
+                                </span>
+                            ))
+                        ): 
+                            <span className={`background-color-Normal pokemon-atributos btn mb-1`} key={"Ninguna"}>Ninguna</span>
                     }
                 </div>
             </>
