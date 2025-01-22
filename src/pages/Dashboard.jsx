@@ -6,7 +6,6 @@ import { Pie } from './Pie';
 import { useBackground } from '../hooks/useBackground';
 import DatosPoke from '../components/DatosPoke.jsx';
 import TituloPoke from '../components/TituloPoke.jsx';
-import Evoluciones from '../components/Evoluciones.jsx';
 // hooks
 import usePokeSpe from '../hooks/usePokeSpe.js';
 import usePokeVari from '../hooks/usePokeVari.js';
@@ -65,9 +64,6 @@ function Dashboard() {
                     formas={pokemons}
                 />
             </div>
-            <Evoluciones
-                data={data}
-            />
             <Pie key={'pie'} />
         </>
     )

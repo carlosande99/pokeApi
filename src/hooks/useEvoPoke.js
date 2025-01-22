@@ -26,7 +26,7 @@ function usePokedex(evoluciones){
         
         // Verificar primera evolución
         const primeraEvo = evoluciones.chain.evolves_to;
-        if (primeraEvo && primeraEvo.length > 0) {
+        if (primeraEvo && primeraEvo.length === 1) {
             fetchPokemons(primeraEvo[0].species.url);
             
             // Verificar segunda evolución
@@ -34,6 +34,13 @@ function usePokedex(evoluciones){
             if (segundaEvo && segundaEvo.length > 0) {
                 fetchPokemons(segundaEvo[0].species.url);
             }
+        }
+
+        // verificar multiples Evoluciones
+        if(primeraEvo && primeraEvo.length > 1){
+            primeraEvo.map((type, index) => (
+                fetchPokemons(type.species.url)
+            ));
         }
         
     }, [evoluciones]);

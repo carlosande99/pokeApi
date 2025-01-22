@@ -1,6 +1,7 @@
 import BarChart from '../components/BarChart.jsx'
 import TypesSpanish from '../components/types.jsx'
 import useTipo from '../hooks/useTipo.js';
+import Evoluciones from '../components/Evoluciones.jsx';
 function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPoke, setActiveDescription, habilidades, formas }){
     function formatearAltura(altura) {
         const heightInMeters = (altura / 10).toFixed(1);
@@ -177,6 +178,10 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                             <TypesSpanish typesNames={tipos}/>
                         </div>
                     </div>
+
+                    <Evoluciones
+                        data={data}
+                    />
                 </div>
         </>
     );
