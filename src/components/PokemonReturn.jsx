@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
  
-function PokemonReturn ({ location, nameData, visibleCount, setOffset , fetchPokemons}) {
+function PokemonReturn ({ location, nameData, visibleCount, setOffset , fetchPokemons, generacion}) {
     const loadMore = () => {
         setOffset(prevOffset => prevOffset + visibleCount);
     };
@@ -11,7 +11,11 @@ function PokemonReturn ({ location, nameData, visibleCount, setOffset , fetchPok
                     {
                         fetchPokemons ? (
                             "Pokédex Nacional"
-                        ) : "Pokédex de la región de " + location.state
+                        ) : 
+                            generacion !== null ? (
+                                "Pokemons de la generacion "+generacion
+                            ) : 
+                                "Pokédex de la región de " + location.state
                     }
                 </h3>
                 <div className='pokemon-grid' key="pokemon-grid">

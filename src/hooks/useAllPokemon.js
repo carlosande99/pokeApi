@@ -1,30 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-function useAllPokemon (pokedexData){
+function useAllPokemon (pokedexData, gene){
     const [offset, setOffset] = useState(0);
     const [cantidadPoke, setCantidadPoke] = useState(0);
     const [nameData, setNameData] = useState([]);
     const [visibleCount] = useState(18);
+    const generation = useRef(0);
+
+    useEffect(() => {
+        if (generation.current !== gene) {
+            generation.current = gene;
+            setOffset(0);
+            setNameData([]);
+            setCantidadPoke(0);
+        }
+    }, [gene]);
 
     useEffect(() => {
         if (!pokedexData) return;
         let x = null;
-        let uniqueEntries
-        console.log()
-        if(pokedexData[0].pokemon_entries){
+        let uniqueEntries;
+
+        if(pokedexData[0] && pokedexData[0].pokemon_entries){
             const allPokemonEntries = pokedexData.flatMap(pokedex => 
                 pokedex.pokemon_entries || []
             );
-            // Filtrar entradas duplicadas por nombre de pokemon
+            
             uniqueEntries = Array.from(new Set(
                 allPokemonEntries.map(entry => entry.pokemon_species.name)
             )).map(name => 
                 allPokemonEntries.find(entry => entry.pokemon_species.name === name)
             );
             setCantidadPoke(uniqueEntries.length)
-        }else{
+        }else if(!pokedexData.pokemon_species){
             setCantidadPoke(pokedexData.length)
             uniqueEntries = pokedexData;
+            x = true
+        }else{
+            setCantidadPoke(pokedexData.length)
+            uniqueEntries = pokedexData.pokemon_species;
             x = true
         }
         // Cargar solo los Pokémon visibles
@@ -33,9 +47,12 @@ function useAllPokemon (pokedexData){
             if(x === null){
                 pokemonName = entry.pokemon_species.name;
                 pokemonEspecie = entry.pokemon_species.url;
-            }else{
+            }else if(entry.species){
                 pokemonName = entry.species.name;
                 pokemonEspecie = entry.species.url;
+            }else{
+                pokemonName = entry.name;
+                pokemonEspecie = entry.url;
             }
 
 

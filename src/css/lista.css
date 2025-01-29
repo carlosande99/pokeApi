@@ -41,6 +41,14 @@
 
 #datosPoke{
     background-color: #36b1d3;
+    max-height: 228px;
+    display: none;
+}
+
+.datosPokeMenorTotal{
+    background-color: #707070;
+    height: 228px;
+    /* display: none; */
 }
 
 #datosPokeMenor{
@@ -51,7 +59,6 @@
 .datosAbility{
     width: 100%;
     display: block;
-    opacity: 1;
     background-color: yellowgreen;
 }
 .datosPokeMenor2{

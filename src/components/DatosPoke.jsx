@@ -157,6 +157,9 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                                     </div>
                                 </div>
                             </div>
+                            <div className='datosPokeMenorTotal w-100 rounded' key={'textAbility'}>
+                                <p>Hola</p>
+                            </div>
                         </div>
                     </div>
                     {/* vent, des y punts */}
