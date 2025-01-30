@@ -21,8 +21,8 @@ function Evoluciones({data}){
         <>
             {evoluciones.chain.evolves_to.length > 0 && datos.evoData.length > 0 ? (
                 evoluciones.chain.evolves_to.length === 1 ? (
-                    <div className="w-100 mt-2 mb-2">
-                        <div className="evoluciones w-100">
+                    <div className="mt-2 mb-2">
+                        <div className="evoluciones">
                             <h3>Evoluciones</h3>
                             <div className="fotos">
                                 {/* Primera evolución */}
@@ -120,11 +120,11 @@ function Evoluciones({data}){
                         </div>
                     </div>
                 ) :
-                    <div className="w-100 mt-2 mb-2">
+                    <div className="mt-2 mb-2 padre-evoluciones">
                         <div className="evoluciones d-flex"> 
                             {
                                 datos.evoData[0] && datos.evoData[0].id && (
-                                    <div className="fotos w-25">
+                                    <div className="fotos">
                                         <div className="m-3 evo-padre">
                                             <div className="evo-fotos">
                                                 <img 
@@ -154,7 +154,7 @@ function Evoluciones({data}){
                                     </div>
                                 )
                             }
-                            <div className="muchas_evoluciones w-75">
+                            <div className="muchas_evoluciones">
                                 {
                                     datos.evoData.map((type, index) => (
                                         index !== 0 && ( // Evitar el primer elemento
@@ -189,8 +189,8 @@ function Evoluciones({data}){
                     </div>
             ) : (
                 // pokemos elegendarios
-                <div className="w-100 mt-2 mb-2">
-                    <div className="evoluciones w-100">
+                <div className="mt-2 mb-2">
+                    <div className="evoluciones">
                         <h3>Este Pokémon no tiene evoluciones</h3>
                         <div className="fotos">
                             {/* Pokemon legendario */}

@@ -175,9 +175,9 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                                     <div className="modal-overlay rounded">
                                         <div className="modal-content">
                                             <div className="modal-header">
-                                                <h6 className="modal-title">
+                                                <span className="modal-title">
                                                     Información de la habilidad
-                                                </h6>
+                                                </span>
                                                 <button 
                                                     type="button" 
                                                     className="btn-close"

@@ -5,7 +5,7 @@
     align-items: center;
 }
 .datos{
-    max-width: 800px;
+    width: 800px;
     justify-content: center;
     align-items: center;
     background-color: #fff;
@@ -15,7 +15,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-auto-flow: dense;
     grid-template-rows: auto;
-    max-width: 800px;
+    /* max-width: 800px; */
     gap: 10px;
     
 }
@@ -23,16 +23,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 400px;
+    /* max-width: 400px; */
     background-color: #b3a7a7a2;
     margin-top: 2%;
 }
 #divImage img{
     width: 50%;
     height: 80%;
-}
-#divDatos{
-    max-width: 400px;
 }
 
 #versiones{
@@ -41,7 +38,6 @@
 
 #datosPoke{
     background-color: #36b1d3;
-    max-height: 228px;
     position: relative;
 }
 
@@ -213,21 +209,86 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     justify-items: center;
-    max-width: 800px;
     margin: 0 auto;
+    width: 75%;
 }
 
 /* Para cuando hay 2 elementos o menos */
 .muchas_evoluciones:has(> :nth-child(-n+2):last-child) {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
+.fotos:has(> :nth-child(-n+2):last-child) {
+    width: 25%;
+}
+.fotos:has(> :nth-child(1):last-child) {
+    width: 100%;
+}
 
 @media (max-width: 800px) {
+    .datos{
+        width: 100%;
+    }
     .divPrin {
         grid-template-columns: 1fr;
-        #divDatos{
-            /* width: 98%; */
-        }
+        margin: 20px;
+    }
+    #datosPokeMenor{
+        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    }
+    .datosPokeMenor2{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #venDesv{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .evoluciones{
+        margin: 20px;
+    }
+    #ventaja{
+        width: 40%;
+    }
+    #desventaja{
+        width: 40%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* Ajustes para múltiples evoluciones */
+    .evoluciones {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .fotos {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .fotos {
+        flex-direction: column;
+    }
+
+    .muchas_evoluciones {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Ajuste específico para el contenedor de Eevee */
+    .evoluciones .evo-padre {
+        width: 100%;
+        max-width: 200px;
+        width: 100% !important;
+    }
+
+    /* Ocultar el ícono de flecha cuando está en columna */
+    .evoluciones .fa-angles-right {
+        transform: rotate(90deg);
+        margin: 10px 0;
     }
 }
 
