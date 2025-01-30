@@ -2,7 +2,12 @@ import BarChart from '../components/BarChart.jsx'
 import TypesSpanish from '../components/types.jsx'
 import useTipo from '../hooks/useTipo.js';
 import Evoluciones from '../components/Evoluciones.jsx';
+import { useState } from 'react';
+
 function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPoke, setActiveDescription, habilidades, formas }){
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedAbility, setSelectedAbility] = useState(null);
+
     function formatearAltura(altura) {
         const heightInMeters = (altura / 10).toFixed(1);
         const formattedHeight = `${heightInMeters} m`;
@@ -19,6 +24,10 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
         } else {
             setActiveDescription(index);
         }
+    };
+    const handleAbilityClick = (ability) => {
+        setSelectedAbility(ability);
+        setModalOpen(true);
     };
     const stats = dataPoke.stats.map(stat => stat.base_stat);
     const {tipos} = useTipo(formas)
@@ -143,22 +152,52 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                                         <p key={'p5'}>
                                             <strong key={'strong4'}>Habilidades: </strong>
                                         </p>
-                                            {
-                                                habilidades && habilidades.length > 0 ? (
-                                                    habilidades.map((type, index) => (
-                                                        type.names.map((type2, index2) => (
-                                                            type2.language && type2.language.name === 'es' ? (
-                                                                <button key={`ability-${index}-${index2}`} className='btn btn-primary pokemon-atributos mb-1 me-1'>{type2.name}</button>
-                                                            ) : null
-                                                        ))
+                                        {
+                                            habilidades && habilidades.length > 0 ? (
+                                                habilidades.map((type, index) => (
+                                                    type.names.map((type2, index2) => (
+                                                        type2.language && type2.language.name === 'es' ? (
+                                                            <button 
+                                                                key={`ability-${index}-${index2}`} 
+                                                                className='btn btn-primary pokemon-atributos mb-1 me-1'
+                                                                onClick={() => handleAbilityClick(type)}
+                                                            >
+                                                                {type2.name}
+                                                            </button>
+                                                        ) : null
                                                     ))
-                                                ): null
-                                            }
+                                                ))
+                                            ): null
+                                        }
                                     </div>
                                 </div>
-                            </div>
-                            <div className='datosPokeMenorTotal w-100 rounded' key={'textAbility'}>
-                                <p>Hola</p>
+                                {modalOpen && selectedAbility && (
+                                    <div className="modal-overlay rounded">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h6 className="modal-title">
+                                                    Información de la habilidad
+                                                </h6>
+                                                <button 
+                                                    type="button" 
+                                                    className="btn-close"
+                                                    aria-label="Close"
+                                                    onClick={() => setModalOpen(false)}
+                                                ></button>
+                                            </div>
+                                            <div className="modal-body">
+                                                <h4>
+                                                    {selectedAbility.names.find(name => name.language.name === 'es')?.name}
+                                                </h4>
+                                                <p>
+                                                    {selectedAbility.flavor_text_entries.find(
+                                                        text => text.language.name === 'es'
+                                                    )?.flavor_text || 'No hay descripción disponible'}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

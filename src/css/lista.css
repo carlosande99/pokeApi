@@ -42,13 +42,59 @@
 #datosPoke{
     background-color: #36b1d3;
     max-height: 228px;
-    display: none;
+    position: relative;
 }
 
 .datosPokeMenorTotal{
     background-color: #707070;
     height: 228px;
-    /* display: none; */
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #313131;
+    display: flex;
+    z-index: 1000;
+}
+
+.modal-content {
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    color: white;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: white;
+    top: 0;
+}
+
+
+
+.modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal-body {
+    color: white;
+    text-align: left;
+}
+.modal-body h4{
+    text-align: left;
+}
+
+.modal-body {
+    margin-bottom: 15px;
 }
 
 #datosPokeMenor{
@@ -56,11 +102,7 @@
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     color: black;
 }
-.datosAbility{
-    width: 100%;
-    display: block;
-    background-color: yellowgreen;
-}
+
 .datosPokeMenor2{
     margin: 5%;
 }
