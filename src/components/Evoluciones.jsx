@@ -43,7 +43,7 @@ function Evoluciones({data}){
                                                         type2.names && type2.names.length > 0 ? (
                                                             type2.names.map((type, index) => (
                                                                 type.language && type.language.name === 'es' ? (
-                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
+                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
                                                                 ): null
                                                             ))
                                                         ): null
@@ -72,7 +72,7 @@ function Evoluciones({data}){
                                                         type2.names && type2.names.length > 0 ? (
                                                             type2.names.map((type, index) => (
                                                                 type.language && type.language.name === 'es' ? (
-                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
+                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
                                                                 ): null
                                                             ))
                                                         ): null
@@ -106,7 +106,7 @@ function Evoluciones({data}){
                                                         type2.names && type2.names.length > 0 ? (
                                                             type2.names.map((type, index) => (
                                                                 type.language && type.language.name === 'es' ? (
-                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
+                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
                                                                 ): null
                                                             ))
                                                         ): null
@@ -141,7 +141,7 @@ function Evoluciones({data}){
                                                             type2.names && type2.names.length > 0 ? (
                                                                 type2.names.map((type, index) => (
                                                                     type.language && type.language.name === 'es' ? (
-                                                                        <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
+                                                                        <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
                                                                     ): null
                                                                 ))
                                                             ): null
@@ -211,7 +211,7 @@ function Evoluciones({data}){
                                                     type2.names && type2.names.length > 0 ? (
                                                         type2.names.map((type, index) => (
                                                             type.language && type.language.name === 'es' ? (
-                                                                <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` `+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
+                                                                <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+`pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
                                                             ): null
                                                         ))
                                                     ): null

@@ -22,7 +22,7 @@ function Layout(){
             <div className="header">
                 <div>
                     <Link to="/">
-                        <img src={require('../assets/images/International_Pokémon_logo.svg.png')} className='img-fluid'></img>
+                        <img src={require('../assets/images/International_Pokémon_logo.svg.png')} alt="logo" className='img-fluid'></img>
                     </Link>
                 </div>
             </div>

@@ -43,7 +43,7 @@ function TituloPoke ({ data, handleChange, selectedIndex }){
                         {/* titulo */}
                         <h2 key={'h2'} className='colorLetras'>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} N.º {formatearNum(data)}</h2>
                         {
-                            data.varieties.length != 1 ?(
+                            data.varieties.length !== 1 ?(
                                 <select className='form-select w-100 mb-2' onChange={handleChange} value={selectedIndex} key="varieties-select">
                                     {
                                         data.varieties.map((item, index) => ( 

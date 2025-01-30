@@ -8,7 +8,7 @@ function useNacional (){
 
     const fetchPokemons = () => {
         setPokemons([]);
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=18" + "&offset=" + valor.current)
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=18&offset=" + valor.current)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Error en la solicitud");

@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function useAntes (data) {
     const [antes, setantes] = useState(null);
-    let x;
+    const x = useRef(0)
+
     useEffect(() => {
         if(!data) return
 
         if((data.id - 1) === 0){
-            x = 1025
+            x.current = 1025
         }else{
-            x = data.id - 1
+            x.current = data.id - 1
         }
-        fetch("https://pokeapi.co/api/v2/pokemon-species/"+x)
+        fetch("https://pokeapi.co/api/v2/pokemon-species/"+x.current)
         .then((response) => {
             if (!response.ok) {
             throw new Error("Error en la solicitud");

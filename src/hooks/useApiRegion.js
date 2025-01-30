@@ -38,7 +38,7 @@ function useApiRegion(region){
                 setLoading(false);
             });
         }
-    }, []);
+    }, [region]);
 
     return {data,loading,error};
 }

@@ -16,7 +16,7 @@ function useDescrip (data){
                     setVersion(versiones => [...versiones, data.flavor_text_entries[i].version.url])
                     foundSpanish = true;
                     count++
-                    if(count == 2 ){
+                    if(count === 2 ){
                         break
                     }
                 }
@@ -30,7 +30,7 @@ function useDescrip (data){
                         setDescripcion(nuevoDatos => [...nuevoDatos, entry.flavor_text]);
                         setVersion(versiones => [...versiones, entry.version.url]);
                         count++
-                        if(count == 2 ){
+                        if(count === 2 ){
                             break
                         }
                     }

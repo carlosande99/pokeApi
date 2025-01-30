@@ -79,7 +79,7 @@ function useAllPokemon (pokedexData, gene){
                 console.error("Error en las promesas:", error);
                 return null;
             });
-    }, [pokedexData, offset]);
+    }, [pokedexData, offset, visibleCount]);
     return {cantidadPoke, offset, setOffset, nameData, visibleCount};
 }
 
