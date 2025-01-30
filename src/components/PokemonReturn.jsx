@@ -12,7 +12,7 @@ function PokemonReturn ({ location, nameData, visibleCount, setOffset , fetchPok
                         fetchPokemons ? (
                             "Pokédex Nacional"
                         ) : 
-                            generacion !== null ? (
+                            generacion !== undefined ? (
                                 "Pokemons de la generacion "+generacion
                             ) : 
                                 "Pokédex de la región de " + location.state
