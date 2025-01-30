@@ -4,6 +4,20 @@
     justify-content: center;
     align-items: center;
 }
+.tituloPoke{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.botones{
+    width: 33%;
+    display: flex !important;
+    align-items: center !important; 
+    height: 90px;
+    justify-content: space-around;
+}
+
 .datos{
     width: 800px;
     justify-content: center;
@@ -74,8 +88,6 @@
     color: white;
     top: 0;
 }
-
-
 
 .modal-header .btn-close {
     filter: invert(1) grayscale(100%) brightness(200%);
@@ -156,10 +168,6 @@
     color: #fff !important;
 }
 
-.botones{
-    height: 90px;
-}
-
 .evoluciones{
     background-color: #707070;
     background-image: var(--fondo-url);
@@ -225,6 +233,7 @@
 }
 
 @media (max-width: 800px) {
+    
     .datos{
         width: 100%;
     }
@@ -254,10 +263,32 @@
     #desventaja{
         width: 40%;
     }
+    
+    .tituloPoke {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .tituloPoke > a {
+        order: -1;
+        width: 100% !important;
+        text-align: center;
+    }
+    
+    .tituloPoke .sigAtr {
+        width: 45% !important;
+    }
+
+    .tituloPoke > div {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
-
+    .botones div{
+        display: flex;
+        flex-direction: column;
+    }
     /* Ajustes para múltiples evoluciones */
     .evoluciones {
         flex-direction: column !important;
