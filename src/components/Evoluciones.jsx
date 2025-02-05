@@ -7,16 +7,11 @@ import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 function Evoluciones({data}){
     const [evoluciones] = useEvo(data);
     const datos = useEvoPoke(evoluciones)
-    // const poke = useVarieties(datos?.evoData[0]?.id || '')
-    // const poke2 = useVarieties(datos?.evoData[1]?.id || '')
-    // const poke3 = useVarieties(datos?.evoData[2]?.id || '')
-    // const tipo1 = useTipo(poke.pokemons)
-    // const tipo2 = useTipo(poke2.pokemons)
-    // const tipo3 = useTipo(poke3.pokemons)
     const pokes = useVarieties(datos?.evoData || '');
     const tipos = useTipo(pokes?.pokemons || '')
     // Validaciones iniciales
     if(!evoluciones || !datos || !datos.evoData || !pokes || !tipos ) return null;
+    console.log(tipos)
     return (
         <>
             {evoluciones.chain.evolves_to.length > 0 && datos.evoData.length > 0 ? (
@@ -39,14 +34,19 @@ function Evoluciones({data}){
                                             <p className="text-white-50">N.º {String(datos.evoData[0].id).padStart(4, '0')}</p>
                                             <p>
                                                 {
-                                                    tipos?.tipos[0]?.map((type2, index2) => (
-                                                        type2.names && type2.names.length > 0 ? (
-                                                            type2.names.map((type, index) => (
-                                                                type.language && type.language.name === 'es' ? (
-                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
-                                                                ): null
+                                                    tipos?.tipos.map((type, typeIndex) => (
+                                                        type.name === evoluciones.chain.species.name &&(
+                                                            type.type.names.map((type2, index2) => (
+                                                                type2.language.name === "es" &&(
+                                                                    <span 
+                                                                    key={`type-0-${typeIndex}`} 
+                                                                    className={`background-color-${type2.name} pokemon-atributos btn me-1 mb-1`}
+                                                                    >
+                                                                        {type2.name}
+                                                                    </span>
+                                                                )
                                                             ))
-                                                        ): null
+                                                        )
                                                     ))
                                                 }
                                             </p>
@@ -68,14 +68,19 @@ function Evoluciones({data}){
                                             <p className="text-white-50">N.º {String(datos.evoData[1].id).padStart(4, '0')}</p>
                                             <p>
                                                 {
-                                                    tipos?.tipos[1]?.map((type2, index2) => (
-                                                        type2.names && type2.names.length > 0 ? (
-                                                            type2.names.map((type, index) => (
-                                                                type.language && type.language.name === 'es' ? (
-                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
-                                                                ): null
+                                                    tipos?.tipos?.map((type, typeIndex) => (
+                                                        type.name === evoluciones.chain.evolves_to[0].species.name &&(
+                                                            type.type.names.map((type2, index2) => (
+                                                                type2.language.name === "es" &&(
+                                                                    <span 
+                                                                    key={`type-0-${typeIndex}`} 
+                                                                    className={`background-color-${type2.name} pokemon-atributos btn me-1 mb-1`}
+                                                                    >
+                                                                        {type2.name}
+                                                                    </span>
+                                                                )
                                                             ))
-                                                        ): null
+                                                        )
                                                     ))
                                                 }
                                             </p>
@@ -102,14 +107,19 @@ function Evoluciones({data}){
                                             <p className="text-white-50">N.º {String(datos.evoData[2].id).padStart(4, '0')}</p>
                                             <p>
                                                 {
-                                                    tipos?.tipos[2]?.map((type2, index2) => (
-                                                        type2.names && type2.names.length > 0 ? (
-                                                            type2.names.map((type, index) => (
-                                                                type.language && type.language.name === 'es' ? (
-                                                                    <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
-                                                                ): null
+                                                    tipos?.tipos?.map((type, typeIndex) => (
+                                                        type.name === evoluciones.chain.evolves_to[0].evolves_to[0].species.name &&(
+                                                            type.type.names.map((type2, index2) => (
+                                                                type2.language.name === "es" &&(
+                                                                    <span 
+                                                                    key={`type-0-${typeIndex}`} 
+                                                                    className={`background-color-${type2.name} pokemon-atributos btn me-1 mb-1`}
+                                                                    >
+                                                                        {type2.name}
+                                                                    </span>
+                                                                )
                                                             ))
-                                                        ): null
+                                                        )
                                                     ))
                                                 }
                                             </p>
@@ -120,6 +130,7 @@ function Evoluciones({data}){
                         </div>
                     </div>
                 ) :
+                    // mas de una primera evolucion
                     <div className="mt-2 mb-2 padre-evoluciones">
                         <div className="evoluciones d-flex"> 
                             {
@@ -137,15 +148,20 @@ function Evoluciones({data}){
                                                 <p className="text-white-50">N.º {String(datos.evoData[0].id).padStart(4, '0')}</p>
                                                 <span>
                                                     {
-                                                        tipos?.tipos[0]?.map((type2, index2) => (
-                                                            type2.names && type2.names.length > 0 ? (
-                                                                type2.names.map((type, index) => (
-                                                                    type.language && type.language.name === 'es' ? (
-                                                                        <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
-                                                                    ): null
-                                                                ))
-                                                            ): null
-                                                        ))
+                                                    tipos?.tipos.map((type, typeIndex) => (
+                                                        type.name === evoluciones.chain.species.name &&(
+                                                            type.type.names.map((type2, index2) => (
+                                                                type2.language.name === "es" &&(
+                                                                    <span 
+                                                                    key={`type-0-${typeIndex}`} 
+                                                                    className={`background-color-${type2.name} pokemon-atributos btn me-1 mb-1`}
+                                                                    >
+                                                                        {type2.name}
+                                                                    </span>
+                                                                )
+                                                            ))
+                                                        )
+                                                    ))
                                                     }
                                                 </span>
                                             </div>
@@ -156,33 +172,40 @@ function Evoluciones({data}){
                             }
                             <div className="muchas_evoluciones">
                                 {
-                                    datos.evoData.map((type, index) => (
-                                        index !== 0 && ( // Evitar el primer elemento
-                                            <div key={type.id} className="evo-padre mb-3 mt-3">
-                                                <div className="evo-fotos2">
-                                                    <img 
-                                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${type.id}.png`} 
-                                                        alt={type.name} 
-                                                    />
-                                                </div>
-                                                <div className="evo-padre">
-                                                    <span className="text-white">{type.name}</span>
-                                                    <span className="text-white-50">N.º {String(type.id).padStart(4, '0')}</span>
-                                                        {
-                                                            tipos.tipos[index] && (
-                                                                tipos.tipos[index].map((type2, index2) => (
-                                                                    type2.names.map((type3, index3) => (
-                                                                        type3.language && type3.language.name === 'es' ? (
-                                                                            <span key={`type-${index}-${index3}`} className={`background-color-`+type3.name+` btn`}>{type3.name}</span>
-                                                                        ): null
-                                                                    ))
+                                    datos.evoData[0] && datos.evoData[0].id && (
+                                        datos?.evoData.map((type, index) => (
+                                            index !== 0 && ( // Evitar el primer elemento
+                                                <div key={type.id} className="evo-padre mb-3 mt-3">
+                                                    <div className="evo-fotos2">
+                                                        <img 
+                                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${type.id}.png`} 
+                                                            alt={type.name} 
+                                                        />
+                                                    </div>
+                                                    <div className="evo-padre">
+                                                        <span className="text-white">{type.name}</span>
+                                                        <span className="text-white-50">N.º {String(type.id).padStart(4, '0')}</span>
+                                                            {
+                                                                tipos?.tipos.map((type3, typeIndex) => (
+                                                                    type3.name === type.name &&(
+                                                                        type3.type.names.map((type2, index2) => (
+                                                                            type2.language.name === "es" &&(
+                                                                                <span 
+                                                                                key={`type-0-${typeIndex}`} 
+                                                                                className={`background-color-${type2.name} pokemon-atributos btn me-1 mb-1`}
+                                                                                >
+                                                                                    {type2.name}
+                                                                                </span>
+                                                                            )
+                                                                        ))
+                                                                    )
                                                                 ))
-                                                            )
-                                                        }
+                                                            }
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )
-                                    ))
+                                            )
+                                        ))
+                                    )
                                 }
                             </div> 
                         </div>
@@ -207,14 +230,19 @@ function Evoluciones({data}){
                                         <p className="text-white-50">N.º {String(datos.evoData[0].id).padStart(4, '0')}</p>
                                         <p>
                                             {
-                                                tipos?.tipos[0]?.map((type2, index2) => (
-                                                    type2.names && type2.names.length > 0 ? (
-                                                        type2.names.map((type, index) => (
-                                                            type.language && type.language.name === 'es' ? (
-                                                                <span key={`type-${index2}-${index}`} className={`background-color-`+type.name+` pokemon-atributos btn me-1 mb-1`}>{type.name}</span>
-                                                            ): null
+                                                tipos?.tipos.map((type, typeIndex) => (
+                                                    type.name === evoluciones.chain.species.name &&(
+                                                        type.type.names.map((type2, index2) => (
+                                                            type2.language.name === "es" &&(
+                                                                <span 
+                                                                key={`type-0-${typeIndex}`} 
+                                                                className={`background-color-${type2.name} pokemon-atributos btn me-1 mb-1`}
+                                                                >
+                                                                    {type2.name}
+                                                                </span>
+                                                            )
                                                         ))
-                                                    ): null
+                                                    )
                                                 ))
                                             }
                                         </p>
