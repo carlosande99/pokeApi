@@ -7,22 +7,22 @@ import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 function Evoluciones({data}){
     const [evoluciones] = useEvo(data);
     const datos = useEvoPoke(evoluciones)
-    const poke = useVarieties(datos?.evoData[0]?.id || '')
-    const poke2 = useVarieties(datos?.evoData[1]?.id || '')
-    const poke3 = useVarieties(datos?.evoData[2]?.id || '')
-    const tipo1 = useTipo(poke.pokemons)
-    const tipo2 = useTipo(poke2.pokemons)
-    const tipo3 = useTipo(poke3.pokemons)
+    // const poke = useVarieties(datos?.evoData[0]?.id || '')
+    // const poke2 = useVarieties(datos?.evoData[1]?.id || '')
+    // const poke3 = useVarieties(datos?.evoData[2]?.id || '')
+    // const tipo1 = useTipo(poke.pokemons)
+    // const tipo2 = useTipo(poke2.pokemons)
+    // const tipo3 = useTipo(poke3.pokemons)
     const pokes = useVarieties(datos?.evoData || '');
-    const tipos = useTipo(pokes.pokemons)
+    const tipos = useTipo(pokes?.pokemons || '')
     // Validaciones iniciales
-    if(!evoluciones || !datos || !datos.evoData ) return null;
+    if(!evoluciones || !datos || !datos.evoData || !pokes || !tipos ) return null;
     return (
         <>
             {evoluciones.chain.evolves_to.length > 0 && datos.evoData.length > 0 ? (
                 evoluciones.chain.evolves_to.length === 1 ? (
                     <div className="mt-2 mb-2">
-                        <div className="evoluciones">
+                        <div className="evoluciones padre-evoluciones">
                             <h3>Evoluciones</h3>
                             <div className="fotos">
                                 {/* Primera evolución */}
@@ -39,7 +39,7 @@ function Evoluciones({data}){
                                             <p className="text-white-50">N.º {String(datos.evoData[0].id).padStart(4, '0')}</p>
                                             <p>
                                                 {
-                                                    tipo1.tipos.map((type2, index2) => (
+                                                    tipos?.tipos[0]?.map((type2, index2) => (
                                                         type2.names && type2.names.length > 0 ? (
                                                             type2.names.map((type, index) => (
                                                                 type.language && type.language.name === 'es' ? (
@@ -68,7 +68,7 @@ function Evoluciones({data}){
                                             <p className="text-white-50">N.º {String(datos.evoData[1].id).padStart(4, '0')}</p>
                                             <p>
                                                 {
-                                                    tipo2.tipos.map((type2, index2) => (
+                                                    tipos?.tipos[1]?.map((type2, index2) => (
                                                         type2.names && type2.names.length > 0 ? (
                                                             type2.names.map((type, index) => (
                                                                 type.language && type.language.name === 'es' ? (
@@ -102,7 +102,7 @@ function Evoluciones({data}){
                                             <p className="text-white-50">N.º {String(datos.evoData[2].id).padStart(4, '0')}</p>
                                             <p>
                                                 {
-                                                    tipo3.tipos.map((type2, index2) => (
+                                                    tipos?.tipos[2]?.map((type2, index2) => (
                                                         type2.names && type2.names.length > 0 ? (
                                                             type2.names.map((type, index) => (
                                                                 type.language && type.language.name === 'es' ? (
@@ -137,7 +137,7 @@ function Evoluciones({data}){
                                                 <p className="text-white-50">N.º {String(datos.evoData[0].id).padStart(4, '0')}</p>
                                                 <span>
                                                     {
-                                                        tipo1.tipos.map((type2, index2) => (
+                                                        tipos?.tipos[0]?.map((type2, index2) => (
                                                             type2.names && type2.names.length > 0 ? (
                                                                 type2.names.map((type, index) => (
                                                                     type.language && type.language.name === 'es' ? (
@@ -190,7 +190,7 @@ function Evoluciones({data}){
             ) : (
                 // pokemos elegendarios
                 <div className="mt-2 mb-2">
-                    <div className="evoluciones">
+                    <div className="evoluciones padre-evoluciones">
                         <h3>Este Pokémon no tiene evoluciones</h3>
                         <div className="fotos">
                             {/* Pokemon legendario */}
@@ -207,7 +207,7 @@ function Evoluciones({data}){
                                         <p className="text-white-50">N.º {String(datos.evoData[0].id).padStart(4, '0')}</p>
                                         <p>
                                             {
-                                                tipo1.tipos.map((type2, index2) => (
+                                                tipos?.tipos[0]?.map((type2, index2) => (
                                                     type2.names && type2.names.length > 0 ? (
                                                         type2.names.map((type, index) => (
                                                             type.language && type.language.name === 'es' ? (
