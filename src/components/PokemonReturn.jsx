@@ -26,12 +26,8 @@ function PokemonReturn ({ location, nameData, visibleCount, setOffset , fetchPok
                                     <div key={`pokemon-card-${pokemon.id}`} className='pokemon-card'>
                                         <img 
                                             key={`pokemon-img-${pokemon.id}`}
-                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
+                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
                                             alt={pokemon.name}
-                                            onError={(e) => {
-                                                e.target.onerror = null;
-                                                e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
-                                            }}
                                             className='pokemon-image'
                                         />
                                         <p key={`pokemon-name-${pokemon.id}`}>{index + 1}. {pokemon.name}</p>

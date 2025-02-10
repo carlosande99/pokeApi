@@ -44,23 +44,15 @@ function DatosPoke ({ data, descripcion, activeDescription, datosVersion, dataPo
                             {
                                 formas.length === 0 ?(
                                     <img
-                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
+                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`}
                                         alt={data.name}
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
-                                        }}
                                         className="pokemon-image"
                                         key={'img'}
                                     />
                                 ):
                                     <img
-                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${formas.id}.svg`}
+                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${formas.id}.png`}
                                         alt={data.name}
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${formas.id}.png`
-                                        }}
                                         className="pokemon-image"
                                         key={'img'}
                                     />

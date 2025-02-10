@@ -11,7 +11,7 @@ function Evoluciones({data}){
     const tipos = useTipo(pokes?.pokemons || '')
     // Validaciones iniciales
     if(!evoluciones || !datos || !datos.evoData || !pokes || !tipos ) return null;
-    console.log(tipos)
+
     return (
         <>
             {evoluciones.chain.evolves_to.length > 0 && datos.evoData.length > 0 ? (
