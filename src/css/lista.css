@@ -38,12 +38,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* max-width: 400px; */
     background-color: #b3a7a7a2;
     margin-top: 2%;
 }
 #divImage img{
-    width: 50%;
+    width: 80%;
     height: 80%;
 }
 
