@@ -36,7 +36,7 @@ body {
 	display:flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 30px;
+	font-size: 1rem !important; 
 	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
 	
 }
@@ -76,4 +76,34 @@ li:hover .colorLetras{
 
 .orange{
 	text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em orange;
+}
+
+ul{
+	width: 78%;
+}
+form{
+	width: 22%;
+}
+form > input{
+	font-size: 1rem !important;
+	width: 70%;
+}
+form > button{
+	font-size: 1rem !important;
+	width: 30%;
+}
+
+@media (max-width: 1300px){
+	.orange{
+		font-size: 0.90rem !important;
+	}
+	form > input{
+		font-size: 0.8rem !important;
+	}
+}
+
+@media (max-width: 1154px){
+	form{
+		font-size: small !important;
+	}
 }

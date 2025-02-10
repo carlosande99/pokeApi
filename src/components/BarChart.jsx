@@ -42,7 +42,7 @@ export default function BarChart({stats}){
     },
   };
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
+    <div>
       <Bar data={midata} options={mioptions} />
     </div>
   );
