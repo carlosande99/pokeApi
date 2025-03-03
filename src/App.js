@@ -1,5 +1,5 @@
 import './css/App.css';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './pages/Layout';
 import Pokemons from './pages/Pokemons';
 import Home from './pages/Home';
@@ -12,18 +12,16 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout/>}>
-            <Route path="/pokemons/:region" element={<Pokemons/>}/>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/dashboard/:pokemon" element={<Dashboard/>}/>
-            <Route path="/Nacional" element={<Nacional/>}/>
-            <Route path='/Generacion/:generacion' element={<Generation/>}/>
-            {/* <Route path="*" element={<Default/>}/> */}
-          </Route>
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route path="/pokemons/:region" element={<Pokemons/>}/>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/dashboard/:pokemon" element={<Dashboard/>}/>
+          <Route path="/Nacional" element={<Nacional/>}/>
+          <Route path='/Generacion/:generacion' element={<Generation/>}/>
+          <Route path="/*" element={<Default/>}/>
+        </Route>
+      </Routes>
     </>
   );
 }
