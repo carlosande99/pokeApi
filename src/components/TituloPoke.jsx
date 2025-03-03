@@ -21,7 +21,7 @@ function TituloPoke ({ data, handleChange, selectedIndex }){
     return (
         <>
             <div className='tituloPoke'>
-                    <Link to={`/Dashboard/${antes.name}`} state={buscar2} className='bg-secondary btn sigAtr botones'>
+                    <Link to={`/pokeApi/Dashboard/${antes.name}`} state={buscar2} className='bg-secondary btn sigAtr botones'>
                         <span key="arrow-left" className='me-2 float-start'>
                             <FontAwesomeIcon icon={faArrowRight} rotation={180} style={{color: "#000000",}} />                     
                         </span>
@@ -59,7 +59,7 @@ function TituloPoke ({ data, handleChange, selectedIndex }){
                             )
                         }
                     </div>
-                     <Link to={`/Dashboard/${desp.name}`} state={buscar} className='bg-secondary btn sigAtr botones'>
+                     <Link to={`/pokeApi/Dashboard/${desp.name}`} state={buscar} className='bg-secondary btn sigAtr botones'>
                         <div>
                             <span key="id-next" className='ms-2'>
                                     N.º {formatearNum(desp)}

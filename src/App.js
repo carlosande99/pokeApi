@@ -13,12 +13,12 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/Pokeapi/" element={<Layout/>}>
-          <Route path="/Pokeapi/pokemons/:region" element={<Pokemons/>}/>
-          <Route path="/Pokeapi/" element={<Home/>}/>
-          <Route path="/Pokeapi/dashboard/:pokemon" element={<Dashboard/>}/>
-          <Route path="/Pokeapi/Nacional" element={<Nacional/>}/>
-          <Route path='/Pokeapi/Generacion/:generacion' element={<Generation/>}/>
+        <Route path="/pokeApi/" element={<Layout/>}>
+          <Route path="/pokeApi/pokemons/:region" element={<Pokemons/>}/>
+          <Route path="/pokeApi/" element={<Home/>}/>
+          <Route path="/pokeApi/dashboard/:pokemon" element={<Dashboard/>}/>
+          <Route path="/pokeApi/Nacional" element={<Nacional/>}/>
+          <Route path='/pokeApi/Generacion/:generacion' element={<Generation/>}/>
           {/* <Route path="*" element={<Default/>}/> */}
         </Route>
       </Routes>

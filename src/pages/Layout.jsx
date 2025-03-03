@@ -14,14 +14,14 @@ function Layout(){
         event.preventDefault()
         const {buscar} = Object.fromEntries(new window.FormData(event.target))
         if (buscar.trim()) {  // Verificamos que no esté vacío
-            navigate(`/dashboard/${buscar.toLowerCase()}`); // Usamos el parámetro en la ruta
+            navigate(`/pokeApi/dashboard/${buscar.toLowerCase()}`); // Usamos el parámetro en la ruta
         }
     }
     return (
         <>
             <div className="header">
                 <div>
-                    <Link to="/">
+                    <Link to="/pokeApi">
                         <img src={require('../assets/images/International_Pokémon_logo.svg.png')} alt="logo" className='img-fluid'></img>
                     </Link>
                 </div>
@@ -40,34 +40,34 @@ function Layout(){
                         <div className='offcanvas-body align-items-center'>
                             <ul className='navbar-nav justify-content-center flex-grow-1'>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/Kanto" className='nav-link orange' state="1">G1 Kanto</Link>
+                                    <Link to="/pokeApi/Generacion/1" className='nav-link orange' state="1">G1 Kanto</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/2" className='nav-link orange' state="2">G2 Johto</Link>
+                                    <Link to="/pokeApi/Generacion/2" className='nav-link orange' state="2">G2 Johto</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/3" className='nav-link orange' state="3">G3 Hoenn</Link>
+                                    <Link to="/pokeApi/Generacion/3" className='nav-link orange' state="3">G3 Hoenn</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/4" className='nav-link orange' state="4">G4 Sinnoh</Link>
+                                    <Link to="/pokeApi/Generacion/4" className='nav-link orange' state="4">G4 Sinnoh</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/5" className='nav-link orange' state="5">G5 Unova</Link>
+                                    <Link to="/pokeApi/Generacion/5" className='nav-link orange' state="5">G5 Unova</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/6" className='nav-link orange' state="6">G6 Kalos</Link>
+                                    <Link to="/pokeApi/Generacion/6" className='nav-link orange' state="6">G6 Kalos</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/7" className='nav-link orange' state="7">G7 Alola</Link>
+                                    <Link to="/pokeApi/Generacion/7" className='nav-link orange' state="7">G7 Alola</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/8" className='nav-link orange' state="8">G8 Galar/Hisui</Link>
+                                    <Link to="/pokeApi/Generacion/8" className='nav-link orange' state="8">G8 Galar/Hisui</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Generacion/9" className='nav-link orange' state="9">G9 Paldea</Link>
+                                    <Link to="/pokeApi/Generacion/9" className='nav-link orange' state="9">G9 Paldea</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="/Nacional" className='nav-link orange'>Pokédex Nacional</Link>
+                                    <Link to="/pokeApi/Nacional" className='nav-link orange'>Pokédex Nacional</Link>
                                 </li>
                             </ul>    
                             <form className='d-flex mt-2 mt-lg-0' onSubmit={BuscarPokemon} role='search'>
