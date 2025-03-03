@@ -14,12 +14,12 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout/>}>
-          <Route path="/pokemons/:region" element={<Pokemons/>}/>
+          <Route path="pokemons/:region" element={<Pokemons/>}/>
           <Route path="/" element={<Home/>}/>
-          <Route path="/dashboard/:pokemon" element={<Dashboard/>}/>
-          <Route path="/Nacional" element={<Nacional/>}/>
-          <Route path='/Generacion/:generacion' element={<Generation/>}/>
-          <Route path="/*" element={<Default/>}/>
+          <Route path="dashboard/:pokemon" element={<Dashboard/>}/>
+          <Route path="Nacional" element={<Nacional/>}/>
+          <Route path='Generacion/:generacion' element={<Generation/>}/>
+          <Route path="*" element={<Default/>}/>
         </Route>
       </Routes>
     </>
