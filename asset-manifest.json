@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pokeApi/static/css/main.1f50a28b.css",
-    "main.js": "/pokeApi/static/js/main.bf55ecf5.js",
+    "main.js": "/pokeApi/static/js/main.050b9072.js",
     "static/js/453.1cee39df.chunk.js": "/pokeApi/static/js/453.1cee39df.chunk.js",
     "static/media/hoenn.png": "/pokeApi/static/media/hoenn.7773ae8c93e73ad014a6.png",
     "static/media/kalos.png": "/pokeApi/static/media/kalos.4c9591879ba9c27ee98d.png",
@@ -18,11 +18,11 @@
     "static/media/image.png": "/pokeApi/static/media/image.39884c0dd1a73f89a6ff.png",
     "index.html": "/pokeApi/index.html",
     "main.1f50a28b.css.map": "/pokeApi/static/css/main.1f50a28b.css.map",
-    "main.bf55ecf5.js.map": "/pokeApi/static/js/main.bf55ecf5.js.map",
+    "main.050b9072.js.map": "/pokeApi/static/js/main.050b9072.js.map",
     "453.1cee39df.chunk.js.map": "/pokeApi/static/js/453.1cee39df.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1f50a28b.css",
-    "static/js/main.bf55ecf5.js"
+    "static/js/main.050b9072.js"
   ]
 }
