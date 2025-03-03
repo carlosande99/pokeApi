@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/pokeApi/react-gh-pages/static/css/main.1f50a28b.css",
-    "main.js": "/pokeApi/react-gh-pages/static/js/main.5d8cfd87.js",
-    "static/js/453.1cee39df.chunk.js": "/pokeApi/react-gh-pages/static/js/453.1cee39df.chunk.js",
-    "static/media/hoenn.png": "/pokeApi/react-gh-pages/static/media/hoenn.7773ae8c93e73ad014a6.png",
-    "static/media/kalos.png": "/pokeApi/react-gh-pages/static/media/kalos.4c9591879ba9c27ee98d.png",
-    "static/media/sinnoh.png": "/pokeApi/react-gh-pages/static/media/sinnoh.46c6db767518bff84473.png",
-    "static/media/alola.png": "/pokeApi/react-gh-pages/static/media/alola.16ebc5b75b98a58c4d45.png",
-    "static/media/unova.png": "/pokeApi/react-gh-pages/static/media/unova.ce2ae78891f5eb3a3717.png",
-    "static/media/johto.png": "/pokeApi/react-gh-pages/static/media/johto.4aac7aaa01eaf698f644.png",
-    "static/media/galar.png": "/pokeApi/react-gh-pages/static/media/galar.4eeccceedc885e14ec12.png",
-    "static/media/hisui.png": "/pokeApi/react-gh-pages/static/media/hisui.3610f7bee428539af377.png",
-    "static/media/kanto.png": "/pokeApi/react-gh-pages/static/media/kanto.e202a11989eb19a78829.png",
-    "static/media/paldea.png": "/pokeApi/react-gh-pages/static/media/paldea.9b430d9ae3990761e067.png",
-    "static/media/International_Pokémon_logo.svg.png": "/pokeApi/react-gh-pages/static/media/International_Pokémon_logo.svg.5511e54e001107cf3e5a.png",
-    "static/media/pokeball-pokemon-svgrepo-com.png": "/pokeApi/react-gh-pages/static/media/pokeball-pokemon-svgrepo-com.d0565d53fd78c6590c28.png",
-    "static/media/image.png": "/pokeApi/react-gh-pages/static/media/image.39884c0dd1a73f89a6ff.png",
-    "index.html": "/pokeApi/react-gh-pages/index.html",
-    "main.1f50a28b.css.map": "/pokeApi/react-gh-pages/static/css/main.1f50a28b.css.map",
-    "main.5d8cfd87.js.map": "/pokeApi/react-gh-pages/static/js/main.5d8cfd87.js.map",
-    "453.1cee39df.chunk.js.map": "/pokeApi/react-gh-pages/static/js/453.1cee39df.chunk.js.map"
+    "main.css": "/pokeApi/static/css/main.1f50a28b.css",
+    "main.js": "/pokeApi/static/js/main.a5d6b8ba.js",
+    "static/js/453.1cee39df.chunk.js": "/pokeApi/static/js/453.1cee39df.chunk.js",
+    "static/media/hoenn.png": "/pokeApi/static/media/hoenn.7773ae8c93e73ad014a6.png",
+    "static/media/kalos.png": "/pokeApi/static/media/kalos.4c9591879ba9c27ee98d.png",
+    "static/media/sinnoh.png": "/pokeApi/static/media/sinnoh.46c6db767518bff84473.png",
+    "static/media/alola.png": "/pokeApi/static/media/alola.16ebc5b75b98a58c4d45.png",
+    "static/media/unova.png": "/pokeApi/static/media/unova.ce2ae78891f5eb3a3717.png",
+    "static/media/johto.png": "/pokeApi/static/media/johto.4aac7aaa01eaf698f644.png",
+    "static/media/galar.png": "/pokeApi/static/media/galar.4eeccceedc885e14ec12.png",
+    "static/media/hisui.png": "/pokeApi/static/media/hisui.3610f7bee428539af377.png",
+    "static/media/kanto.png": "/pokeApi/static/media/kanto.e202a11989eb19a78829.png",
+    "static/media/paldea.png": "/pokeApi/static/media/paldea.9b430d9ae3990761e067.png",
+    "static/media/International_Pokémon_logo.svg.png": "/pokeApi/static/media/International_Pokémon_logo.svg.5511e54e001107cf3e5a.png",
+    "static/media/pokeball-pokemon-svgrepo-com.png": "/pokeApi/static/media/pokeball-pokemon-svgrepo-com.d0565d53fd78c6590c28.png",
+    "static/media/image.png": "/pokeApi/static/media/image.39884c0dd1a73f89a6ff.png",
+    "index.html": "/pokeApi/index.html",
+    "main.1f50a28b.css.map": "/pokeApi/static/css/main.1f50a28b.css.map",
+    "main.a5d6b8ba.js.map": "/pokeApi/static/js/main.a5d6b8ba.js.map",
+    "453.1cee39df.chunk.js.map": "/pokeApi/static/js/453.1cee39df.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1f50a28b.css",
-    "static/js/main.5d8cfd87.js"
+    "static/js/main.a5d6b8ba.js"
   ]
 }
