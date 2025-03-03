@@ -22,7 +22,7 @@ function PokemonReturn ({ location, nameData, visibleCount, setOffset , fetchPok
                     {
                         nameData && nameData.length > 0 ? (
                             nameData.map((pokemon, index) => (
-                                <Link state={pokemon.id} to={"/pokeApi/Dashboard/"+pokemon.name} key={`pokemon-link-${pokemon.id}`} className='colorLetras'>
+                                <Link state={pokemon.id} to={"/Dashboard/"+pokemon.name} key={`pokemon-link-${pokemon.id}`} className='colorLetras'>
                                     <div key={`pokemon-card-${pokemon.id}`} className='pokemon-card'>
                                         <img 
                                             key={`pokemon-img-${pokemon.id}`}
